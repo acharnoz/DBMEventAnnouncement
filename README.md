@@ -7,18 +7,16 @@ This addon is underdeveloppement and not is still perfect.
 
 This addon is created and matained by Milho/Maseo (Dalaran EU Realm). Artificial intelligence has been used to transform the spell names (retreived from WOW Data Api) into voices.
 
-# Revision
+# Revision history
 
 
-# Roadmap
-
-
+# Next steps
 Bug
 - Fix refresh icon frame on profile reset
 - Fix spell only defineds with DMB message and/or DMB icon
 
 Feature
-- destactivation du son
+- Icon and config dialog feature to desable all sounds
 - montrer cacher les icones quand on passe la souris dessus
 - resize dynamique
 - gestion des icones debug
@@ -32,3 +30,9 @@ Feature
 - désactiver les bars dbms
 - gérer le multilangue en texte
 - gérer la selection d'un langue en voicepack
+
+
+# Reminder
+- /console scriptErrors 1 to enable frame to catch script errors
+- /console scriptErrors 0 to desable frame to catch script errors
+- /dump EJ_GetEncounterInfo(95)
