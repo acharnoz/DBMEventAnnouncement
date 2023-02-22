@@ -1,0 +1,8 @@
+## Interface: 100005
+## Title:|cffffe00a<|r|cffff7d0aDBMEA|r|cffffe00a>|r |cff69ccf0Iles aux Dragons|r
+## Version: 20230212
+## Notes: This addon includes sounds for instance "Iles aux Dragons"
+## Author: Milho
+## RequiredDeps: DBMEA
+
+DBMEA-IlesAuxDragons-FR.lua

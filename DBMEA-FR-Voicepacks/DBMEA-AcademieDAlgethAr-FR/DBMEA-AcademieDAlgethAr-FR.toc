@@ -1,0 +1,8 @@
+## Interface: 100005
+## Title:|cffffe00a<|r|cffff7d0aDBMEA|r|cffffe00a>|r |cff69ccf0Academie d'Algeth'ar|r
+## Version: 20230212
+## Notes: This addon includes sounds for instance "Academie d'Algeth'ar"
+## Author: Milho
+## RequiredDeps: DBMEA
+
+DBMEA-AcademieDAlgethAr-FR.lua

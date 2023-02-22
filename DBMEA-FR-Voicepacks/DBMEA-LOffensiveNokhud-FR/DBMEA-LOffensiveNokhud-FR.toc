@@ -1,0 +1,8 @@
+## Interface: 100005
+## Title:|cffffe00a<|r|cffff7d0aDBMEA|r|cffffe00a>|r |cff69ccf0L'offensive nokhud|r
+## Version: 20230212
+## Notes: This addon includes sounds for instance "L'offensive nokhud"
+## Author: Milho
+## RequiredDeps: DBMEA
+
+DBMEA-LOffensiveNokhud-FR.lua

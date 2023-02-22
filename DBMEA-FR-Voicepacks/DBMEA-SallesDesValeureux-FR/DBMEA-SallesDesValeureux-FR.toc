@@ -1,0 +1,8 @@
+## Interface: 100005
+## Title:|cffffe00a<|r|cffff7d0aDBMEA|r|cffffe00a>|r |cff69ccf0Salles des Valeureux|r
+## Version: 20230212
+## Notes: This addon includes sounds for instance "Salles des Valeureux"
+## Author: Milho
+## RequiredDeps: DBMEA
+
+DBMEA-SallesDesValeureux-FR.lua
