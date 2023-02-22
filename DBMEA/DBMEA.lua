@@ -1,29 +1,9 @@
--- note /console scriptErrors 1
--- note /console scriptErrors 0
--- /dump EJ_GetEncounterInfo(95)
-
-
--- ---------------
--- --  Globals  --
--- ---------------
-
---DBMEA = {} --DBMEA or {}
---DBMEA.myVval = 2
-
 local addonName, addon = ...
-addon = LibStub("AceAddon-3.0"):NewAddon(addon, addonName, "AceTimer-3.0", "AceConsole-3.0","AceEvent-3.0")
-
--- MyAddon = LibStub("AceAddon-3.0"):NewAddon("MyAddon", "AceEvent-3.0")
--- MyAddon:RegisterEvent("NAME_OF_EVENT")
--- This will register your addon to receive events with the given name, and attempt to call MyAddon:NAME_OF_EVENT() to process them.
-
-
-
+addon = LibStub("AceAddon-3.0"):NewAddon(addon, addonName, "AceTimer-3.0", "AceConsole-3.0", "AceEvent-3.0")
 
 
 -- called by AceAddon when Addon is fully loaded
 function addon:OnInitialize()
-
   -- Load modules
   for modle in pairs(addon.modules) do
     addon[modle] = addon.modules[modle]
@@ -70,9 +50,9 @@ function addon:PLAYER_ENTERING_WORLD()
   end
 end
 
-
 function addon:createEAVoicePack(voicePackName, instanceId, lang)
-  addon.MsgTools.TracePrintf("DBMEA:createEAVoicePack(voicePackName=%s, instanceId=%s, lang=%s)", voicePackName, instanceId, lang)
+  addon.MsgTools.TracePrintf("DBMEA:createEAVoicePack(voicePackName=%s, instanceId=%s, lang=%s)", voicePackName,
+    instanceId, lang)
   local vp = addon.EventAnnouncementVoicePack:createEAVoicePack()
   vp:setVoicePackName(voicePackName)
   vp:setInstanceId(instanceId)
