@@ -57,13 +57,12 @@ local function createButton(frame, size, texturePath)
 end
 
 -------------------------------------------------------------------------------
-function EventAnnouncementFrame:createMenu(buttonSize, buttonBorderSpace)
-  self.closeButton = createButton(self.frame, buttonSize, "Interface\\Addons\\DBMEA\\textures\\icon-close-32px")
+function EventAnnouncementFrame:createMenu(buttonSize, buttonBorderSpace, borderSpace)
+  
   self.lockButton = createButton(self.frame, buttonSize, "Interface\\Addons\\DBMEA\\textures\\icon-unlock-32px")
   self.settingsButton = createButton(self.frame, buttonSize, "Interface\\Addons\\DBMEA\\textures\\icon-settings-32px")
   self.audioButton = createButton(self.frame, buttonSize, "Interface\\Addons\\DBMEA\\textures\\icon-audio-32px")
-  self.fileButton = createButton(self.frame, buttonSize, "Interface\\Addons\\DBMEA\\textures\\icon-file-32px")
-
+  
   self.lockButton.isUnlock = true
   self.lockButton:SetScript('OnClick', function()
     if (self.lockButton.isUnlock) then
@@ -76,6 +75,37 @@ function EventAnnouncementFrame:createMenu(buttonSize, buttonBorderSpace)
     self.frame:SetMovable(self.lockButton.isUnlock)
   end)
 
+  self.settingsButton:SetScript('OnClick', function()
+    InterfaceOptionsFrame_OpenToCategory("DBM Event Announcement")
+  end)
+
+  self.audioButton:SetPoint("TOPLEFT", 0, borderSpace + buttonSize)
+  self.settingsButton:SetPoint("LEFT", self.audioButton, "RIGHT", buttonBorderSpace, 0)
+  self.lockButton:SetPoint("LEFT", self.settingsButton, "RIGHT", buttonBorderSpace, 0)
+
+end
+
+-------------------------------------------------------------------------------
+function EventAnnouncementFrame:showMenu()
+  self.lockButton:Show()
+  self.settingsButton:Show()
+  self.audioButton:Show()
+end
+
+-------------------------------------------------------------------------------
+function EventAnnouncementFrame:hideMenu()
+  self.lockButton:Hide()
+  self.settingsButton:Hide()
+  self.audioButton:Hide()
+end
+
+-------------------------------------------------------------------------------
+function EventAnnouncementFrame:createDebugMenu(buttonSize, buttonBorderSpace, borderSpace)
+
+  self.fileButton = createButton(self.frame, buttonSize, "Interface\\Addons\\DBMEA\\textures\\icon-file-32px")
+
+  self.fileButton:SetPoint("BOTTOMLEFT", 0, - borderSpace - buttonSize)
+
   self.fileButton:SetScript('OnClick', function()
     if DLAPI then
       local dl = LibStub("AceAddon-3.0"):GetAddon("_DebugLog")
@@ -83,16 +113,16 @@ function EventAnnouncementFrame:createMenu(buttonSize, buttonBorderSpace)
     end
   end)
 
-  self.settingsButton:SetScript('OnClick', function()
-    InterfaceOptionsFrame_OpenToCategory("DBM Event Announcement")
-  end)
+end
 
-  --mainFrame.audioButton:SetPoint("TOPLEFT", 0, buttonBorderSpace + buttonSize)
-  --mainFrame.settingsButton:SetPoint("LEFT", mainFrame.audioButton, "RIGHT", buttonBorderSpace, 0)
-  self.settingsButton:SetPoint("TOPLEFT", 0, buttonBorderSpace + buttonSize)
-  self.fileButton:SetPoint("LEFT", self.settingsButton, "RIGHT", buttonBorderSpace, 0)
-  self.lockButton:SetPoint("LEFT", self.fileButton, "RIGHT", buttonBorderSpace, 0)
-  self.closeButton:SetPoint("LEFT", self.lockButton, "RIGHT", buttonBorderSpace, 0)
+-------------------------------------------------------------------------------
+function EventAnnouncementFrame:showDebugMenu()
+  self.fileButton:Show()
+end
+
+-------------------------------------------------------------------------------
+function EventAnnouncementFrame:hideDebugMenu()
+  self.fileButton:Hide()
 end
 
 -------------------------------------------------------------------------------
@@ -131,6 +161,19 @@ function EventAnnouncementFrame:scheduleClearEvent(second)
 end
 
 -------------------------------------------------------------------------------
+function EventAnnouncementFrame:scheduleHideMenu(second)
+  if (self.menuHideTimer ~= nil) then
+    addon:CancelTimer(self.menuHideTimer)
+    self.menuHideTimer = nil
+  end
+
+  self.menuHideTimer = addon:ScheduleTimer(function()
+    addon.EventAnnouncementFrame:hideMenu()
+    addon.EventAnnouncementFrame:hideDebugMenu()
+  end, second)
+end
+
+-------------------------------------------------------------------------------
 function EventAnnouncementFrame:iconFrameStopMoving()
   addon.MsgTools.DebugPrintf("EventAnnouncementFrame:iconFrameStopMoving() top=%d lef=%d", self.frame:GetTop(),
     self.frame:GetLeft())
@@ -148,22 +191,26 @@ end
 
 -------------------------------------------------------------------------------
 function EventAnnouncementFrame:OnEnter()
-  self.frame:SetBackdropColor(1, 0, 0, 0.5)
+  addon.MsgTools.DebugPrintf("EventAnnouncementFrame:OnEnter()")
+  self:showMenu()
+  self:showDebugMenu()
 end
 
 -------------------------------------------------------------------------------
 function EventAnnouncementFrame:OnLeave()
-  self.frame:SetBackdropColor(0, 0, 0, 0.5)
+  addon.MsgTools.DebugPrintf("EventAnnouncementFrame:OnLeave()")
+  self:scheduleHideMenu(3)
 end
 
 -------------------------------------------------------------------------------
 function EventAnnouncementFrame:init()
   self.frame = nil
   self.eventCleaningTimer = nil
+  self.menuHideTimer = nil
 
   self.ICON_SIZE = 60 * addon.Config:getEAFrameSizePercent()
   self.BORDER_SPACE = 4
-  self.BUTTON_SIZE = 14
+  self.BUTTON_SIZE = 12
   self.BUTTON_BORDER_SPACE = 2
   self.FRAME_HEIGHT = self.ICON_SIZE + 2 * self.BORDER_SPACE
   self.FRAME_WIDTH = self.FRAME_HEIGHT
@@ -171,7 +218,8 @@ function EventAnnouncementFrame:init()
   self:createMainFrame(self.FRAME_WIDTH, self.FRAME_HEIGHT)
   self:createIcon(self.ICON_SIZE, self.BORDER_SPACE)
   self:createMessage(self.BORDER_SPACE)
-  self:createMenu(self.BUTTON_SIZE, self.BUTTON_BORDER_SPACE)
+  self:createMenu(self.BUTTON_SIZE, self.BUTTON_BORDER_SPACE, self.BORDER_SPACE)
+  self:createDebugMenu(self.BUTTON_SIZE, self.BUTTON_BORDER_SPACE, self.BORDER_SPACE)
 
   -- Manage main frame interaction
   self.frame:SetMovable(true)
@@ -182,4 +230,7 @@ function EventAnnouncementFrame:init()
 
   self:clear()
   self.frame:Show()
+  self:hideMenu()
+  self:hideDebugMenu()
+
 end
