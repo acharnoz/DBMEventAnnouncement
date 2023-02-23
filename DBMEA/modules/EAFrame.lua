@@ -1,152 +1,163 @@
 local addonName, addon = ...
-local EAFrame = addon:NewModule("EventAnnouncementFrame")
+local EventAnnouncementFrame = addon:NewModule("EventAnnouncementFrame")
 
-
-local function createEAFrame(width, height)
-  local f = CreateFrame("Frame", nil, UIParent, "BackdropTemplate")
-
-  f:SetBackdrop({
+-------------------------------------------------------------------------------
+function EventAnnouncementFrame:createMainFrame(width, height)
+  self.frame = CreateFrame("Frame", nil, UIParent, "BackdropTemplate")
+  self.frame:SetBackdrop({
     bgFile = "Interface/Tooltips/UI-Tooltip-Background",
     edgeFile = "Interface/Tooltips/UI-Tooltip-Border",
     edgeSize = 4
-    --edgeSize = 0
   })
-  f:SetBackdropColor(0, 0, 0, 0.5)
-  --f:SetBackdropColor(0, 0, 0, 0)
-  f:SetSize(width, height)
+  self.frame:SetBackdropColor(0, 0, 0, 0.5)
+  self.frame:SetSize(width, height)
 
-  -- make parent frame movable
-  f:SetMovable(true)
-
-  return f
+  -- Manage main frame position
+  if addon.Config:getIconFrameLeft() == 0 then
+    self.frame:SetPoint("CENTER")
+  else
+    addon.MsgTools.DebugPrintf("createEventAnnouncementFrame top=%d left=%d", addon.Config:getIconFrameTop(),
+      addon.Config:getIconFrameLeft())
+    self.frame:SetPoint("TOPLEFT", UIParent, "BOTTOMLEFT", addon.Config:getIconFrameLeft(),
+      addon.Config:getIconFrameTop())
+  end
 end
 
-local function fillEAFrame(mainFrame, iconSize, borderSpace)
-  mainFrame.texture = mainFrame:CreateTexture("DBMEA_texture", "ARTWORK")
-  --mainFrame.texture:SetAllPoints(mainFrame)
-  mainFrame.texture:SetSize(iconSize, iconSize)
+-------------------------------------------------------------------------------
+function EventAnnouncementFrame:createIcon(iconSize, borderSpace)
+  self.icon = self.frame:CreateTexture("DBMEA_texture", "ARTWORK")
+  self.icon:SetSize(iconSize, iconSize)
+  self.icon:SetPoint("CENTER")
+  self.icon:SetTexture("interface/icons/inv_mushroom_11")
+  self.icon:SetTexCoord(0.1, 0.9, 0.1, 0.9)
 
-  
-  mainFrame.texture:SetPoint("CENTER")
-  mainFrame.texture:SetTexture("interface/icons/inv_mushroom_11")
-  mainFrame.texture:SetTexCoord(0.1, 0.9, 0.1, 0.9)
+  -- mainFrame.texture:SetAllPoints(mainFrame)
   -- mainFrame.alertIcon = mainFrame:CreateTexture(nil, "ARTWORK")
   -- mainFrame.alertIcon:SetSize(iconSize, iconSize)
   -- mainFrame.alertIcon:SetPoint("CENTER")
   -- mainFrame.alertIcon:SetTexture("interface/icons/inv_mushroom_11")
-
-  mainFrame.alertMessage = mainFrame:CreateFontString(nil, "ARTWORK", "GameFontNormal")
-  mainFrame.alertMessage:SetPoint("TOP", mainFrame, "BOTTOM", 0, -borderSpace)
-  --mainFrame.alertMessage:SetPoint("BOTTOMRIGHT", mainFrame, "RIGHT", -borderSpace, 0)
-  mainFrame.alertMessage:SetJustifyH("CENTER")
 end
 
+-------------------------------------------------------------------------------
+function EventAnnouncementFrame:createMessage(borderSpace)
+  self.message = self.frame:CreateFontString(nil, "ARTWORK", "GameFontNormal")
+  self.message:SetPoint("TOP", self.frame, "BOTTOM", 0, -borderSpace)
+  self.message:SetJustifyH("CENTER")
+end
+
+-------------------------------------------------------------------------------
 local function createButton(frame, size, texturePath)
   local button = CreateFrame("Button", nil, frame)
   button:SetSize(size, size)
-
   button.texture = button:CreateTexture(nil, "ARTWORK")
   button.texture:SetSize(size, size)
   button.texture:SetPoint("CENTER", 0, 0)
   button.texture:SetTexture(texturePath)
-
   return button
 end
 
-local function fillButton(mainFrame, buttonSize, buttonBorderSpace)
-  mainFrame.closeButton = createButton(mainFrame, buttonSize, "Interface\\Addons\\DBMEA\\textures\\icon-close-32px")
-  mainFrame.lockButton = createButton(mainFrame, buttonSize, "Interface\\Addons\\DBMEA\\textures\\icon-unlock-32px")
-  mainFrame.settingsButton = createButton(mainFrame, buttonSize, "Interface\\Addons\\DBMEA\\textures\\icon-settings-32px")
-  --mainFrame.audioButton = createButton(mainFrame, buttonSize, "Interface\\Addons\\DBMEA\\textures\\icon-audio-32px")
-  mainFrame.fileButton = createButton(mainFrame, buttonSize, "Interface\\Addons\\DBMEA\\textures\\icon-file-32px")
+-------------------------------------------------------------------------------
+function EventAnnouncementFrame:createMenu(buttonSize, buttonBorderSpace)
+  self.closeButton = createButton(self.frame, buttonSize, "Interface\\Addons\\DBMEA\\textures\\icon-close-32px")
+  self.lockButton = createButton(self.frame, buttonSize, "Interface\\Addons\\DBMEA\\textures\\icon-unlock-32px")
+  self.settingsButton = createButton(self.frame, buttonSize, "Interface\\Addons\\DBMEA\\textures\\icon-settings-32px")
+  self.audioButton = createButton(self.frame, buttonSize, "Interface\\Addons\\DBMEA\\textures\\icon-audio-32px")
+  self.fileButton = createButton(self.frame, buttonSize, "Interface\\Addons\\DBMEA\\textures\\icon-file-32px")
 
-  mainFrame.lockButton.isUnlock = true
-  mainFrame.lockButton:SetScript('OnClick', function()
-    if (mainFrame.lockButton.isUnlock) then
-      mainFrame.lockButton.isUnlock = false
-      mainFrame.lockButton.texture:SetTexture("Interface\\Addons\\DBMEA\\textures\\icon-lock-32px")
+  self.lockButton.isUnlock = true
+  self.lockButton:SetScript('OnClick', function()
+    if (self.lockButton.isUnlock) then
+      self.lockButton.isUnlock = false
+      self.lockButton.texture:SetTexture("Interface\\Addons\\DBMEA\\textures\\icon-lock-32px")
     else
-      mainFrame.lockButton.texture:SetTexture("Interface\\Addons\\DBMEA\\textures\\icon-unlock-32px")
-      mainFrame.lockButton.isUnlock = true
+      self.lockButton.texture:SetTexture("Interface\\Addons\\DBMEA\\textures\\icon-unlock-32px")
+      self.lockButton.isUnlock = true
     end
-    mainFrame:SetMovable(mainFrame.lockButton.isUnlock)
+    self.frame:SetMovable(self.lockButton.isUnlock)
   end)
 
-  mainFrame.fileButton:SetScript('OnClick', function()
+  self.fileButton:SetScript('OnClick', function()
     if DLAPI then
       local dl = LibStub("AceAddon-3.0"):GetAddon("_DebugLog")
       dl.GUI:Load()
     end
   end)
 
-  mainFrame.settingsButton:SetScript('OnClick', function()
+  self.settingsButton:SetScript('OnClick', function()
     InterfaceOptionsFrame_OpenToCategory("DBM Event Announcement")
   end)
 
   --mainFrame.audioButton:SetPoint("TOPLEFT", 0, buttonBorderSpace + buttonSize)
   --mainFrame.settingsButton:SetPoint("LEFT", mainFrame.audioButton, "RIGHT", buttonBorderSpace, 0)
-  mainFrame.settingsButton:SetPoint("TOPLEFT", 0, buttonBorderSpace + buttonSize)
-  mainFrame.fileButton:SetPoint("LEFT", mainFrame.settingsButton, "RIGHT", buttonBorderSpace, 0)
-  mainFrame.lockButton:SetPoint("LEFT", mainFrame.fileButton, "RIGHT", buttonBorderSpace, 0)
-  mainFrame.closeButton:SetPoint("LEFT", mainFrame.lockButton, "RIGHT", buttonBorderSpace, 0)
+  self.settingsButton:SetPoint("TOPLEFT", 0, buttonBorderSpace + buttonSize)
+  self.fileButton:SetPoint("LEFT", self.settingsButton, "RIGHT", buttonBorderSpace, 0)
+  self.lockButton:SetPoint("LEFT", self.fileButton, "RIGHT", buttonBorderSpace, 0)
+  self.closeButton:SetPoint("LEFT", self.lockButton, "RIGHT", buttonBorderSpace, 0)
 end
 
 -------------------------------------------------------------------------------
--------------------------------------------------------------------------------
-function EAFrame:setEvent(msg, iconId)
-  self.frame.alertMessage:SetText(msg)
-  self.frame.texture:SetTexture(iconId)
+function EventAnnouncementFrame:setEvent(msg, iconId)
+  self.message:SetText(msg)
+  self.icon:SetTexture(iconId)
   self.frame:Show()
-  self:scheduleClearEvent(4)
+  self:scheduleClearEvent(addon.Config:getAnnounceTimeBeforeEvent())
 end
 
 -------------------------------------------------------------------------------
-function EAFrame:clearEvent()
-  self.frame.alertMessage:SetText("")
-  self.frame.texture:SetTexture(236151)
+function EventAnnouncementFrame:clearEvent()
+  self.message:SetText("")
+  self.icon:SetTexture(236151)
   self.frame:Hide()
 end
 
 -------------------------------------------------------------------------------
-function EAFrame:setStage(number)
+function EventAnnouncementFrame:setStage(number)
   --Frames.frame.alertSpell:SetText(number)
 end
 
 -------------------------------------------------------------------------------
-function EAFrame:clear()
+function EventAnnouncementFrame:clear()
   self:clearEvent()
 end
 
 -------------------------------------------------------------------------------
-local function onFadeEventCallback()
-  addon.EventAnnouncementFrame:clearEvent()
-end
-
-function EAFrame:scheduleClearEvent(second)
+function EventAnnouncementFrame:scheduleClearEvent(second)
   if (self.eventCleaningTimer ~= nil) then
     addon:CancelTimer(self.eventCleaningTimer)
     self.eventCleaningTimer = nil
   end
 
-  self.eventCleaningTimer = addon:ScheduleTimer(onFadeEventCallback, second)
+  self.eventCleaningTimer = addon:ScheduleTimer(function() addon.EventAnnouncementFrame:clearEvent() end, second)
 end
 
 -------------------------------------------------------------------------------
-
-function EAFrame:iconFrameStopMoving()
-  addon.MsgTools.DebugPrintf("EAFrame:iconFrameStopMoving() top=%d lef=%d",  self.frame:GetTop(), self.frame:GetLeft())
+function EventAnnouncementFrame:iconFrameStopMoving()
+  addon.MsgTools.DebugPrintf("EventAnnouncementFrame:iconFrameStopMoving() top=%d lef=%d", self.frame:GetTop(),
+    self.frame:GetLeft())
   self.frame:StopMovingOrSizing()
   addon.Config:setIconFrameLeft(self.frame:GetLeft())
   addon.Config:setIconFrameTop(self.frame:GetTop())
 end
 
 -------------------------------------------------------------------------------
-function EAFrame:OnEnter()
+function EventAnnouncementFrame:iconFrameStartMoving()
+  if self.lockButton.isUnlock then
+    self.frame:StartMoving()
+  end
+end
+
+-------------------------------------------------------------------------------
+function EventAnnouncementFrame:OnEnter()
   self.frame:SetBackdropColor(1, 0, 0, 0.5)
 end
 
 -------------------------------------------------------------------------------
-function EAFrame:init()
+function EventAnnouncementFrame:OnLeave()
+  self.frame:SetBackdropColor(0, 0, 0, 0.5)
+end
+
+-------------------------------------------------------------------------------
+function EventAnnouncementFrame:init()
   self.frame = nil
   self.eventCleaningTimer = nil
 
@@ -157,28 +168,17 @@ function EAFrame:init()
   self.FRAME_HEIGHT = self.ICON_SIZE + 2 * self.BORDER_SPACE
   self.FRAME_WIDTH = self.FRAME_HEIGHT
 
-  self.frame = createEAFrame(self.FRAME_WIDTH, self.FRAME_HEIGHT)
+  self:createMainFrame(self.FRAME_WIDTH, self.FRAME_HEIGHT)
+  self:createIcon(self.ICON_SIZE, self.BORDER_SPACE)
+  self:createMessage(self.BORDER_SPACE)
+  self:createMenu(self.BUTTON_SIZE, self.BUTTON_BORDER_SPACE)
 
-  if addon.Config:getIconFrameLeft() == 0 then
-    self.frame:SetPoint("CENTER")
-  else
-    addon.MsgTools.DebugPrintf("createEAFrame top=%d left=%d",  addon.Config:getIconFrameTop(), addon.Config:getIconFrameLeft())
-    self.frame:SetPoint("TOPLEFT", UIParent, "BOTTOMLEFT", addon.Config:getIconFrameLeft(), addon.Config:getIconFrameTop())
-  end
-
-  fillEAFrame(self.frame, self.ICON_SIZE, self.BORDER_SPACE)
-  fillButton(self.frame, self.BUTTON_SIZE, self.BUTTON_BORDER_SPACE)
-
+  -- Manage main frame interaction
+  self.frame:SetMovable(true)
+  self.frame:SetScript("OnMouseDown", function() addon.EventAnnouncementFrame:iconFrameStartMoving() end)
+  self.frame:SetScript("OnMouseUp", function() addon.EventAnnouncementFrame:iconFrameStopMoving() end)
   self.frame:SetScript("OnEnter", function() addon.EventAnnouncementFrame:OnEnter() end)
-  -- f:SetScript("OnLeave", function(self, motion)
-  --   GameTooltip:Hide()
-  -- end)
-
-  self.frame:SetScript("OnMouseDown", self.frame.StartMoving)
-  self.frame:SetScript("OnMouseUp", function()
-    addon.EventAnnouncementFrame:iconFrameStopMoving()
-  end)
-
+  self.frame:SetScript("OnLeave", function() addon.EventAnnouncementFrame:OnLeave() end)
 
   self:clear()
   self.frame:Show()
