@@ -30,6 +30,14 @@ local function DBMEventCallback(event, ...)
     bar.icon = icon
     bar.timerType = timerType
     bar.spellId = spellId
+
+    if addon.DBMtestEnable then
+      if not addon.LoadedVoicePacks:hasLoadedSpells() then
+        addon.EventAnnouncement:loadRandomVoicePack()
+      end
+      bar.spellId =  addon.LoadedVoicePacks:getRandomSpellId()
+    end
+
     bar.newSpellID = addon.LoadedVoicePacks:getEquivalent(bar.spellId)
     if bar.newSpellID ~= nil then
       bar.spellIdEnabled = addon.Config:isSpellVoiceEnabled(bar.newSpellID)

@@ -9,6 +9,7 @@ local DBMEA = LibStub("AceAddon-3.0"):GetAddon("DBMEA")
 DBMEA.Structures = {}
 local DBMEAS = DBMEA.Structures
 
+DBMEAS.DBMtestEnable = false
 DBMEAS.registeredDBMEvents = {}
 DBMEAS.bars = {}
 DBMEAS.nextExpire = 0 -- time of next expiring timer

@@ -14,19 +14,18 @@ This addon is created and matained by Milho/Maseo (Dalaran EU Realm). Artificial
 Bug
 - Fix refresh icon frame on profile reset
 - Fix spell only defineds with DMB message and/or DMB icon
+- Fix print loaded spell when the player is not in instance
 
 Feature
 - Icon and config dialog feature to desable all sounds
-- montrer cacher les icones quand on passe la souris dessus
 - resize dynamique
-- gestion des icones debug
 - gestion des spells avec affichage par encounter pour la configuration
+- load addon with custom icon
+
 - gestion des informations de spell
 - gestion du clic config -> journal
 - gestion du clic icone -> journal
 - gestion de profil par défaut ? tank, dps, heal ?
-- gestion d'un son ou son random pour le mode dbm test
-- gérer le mode dbm test
 - désactiver les bars dbms
 - gérer le multilangue en texte
 - gérer la selection d'un langue en voicepack

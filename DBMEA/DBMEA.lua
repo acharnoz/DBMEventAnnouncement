@@ -22,6 +22,7 @@ function addon:OnInitialize()
   addon.Timer:init()
   addon.EventAnnouncement:init()
   addon.EventAnnouncementFrame:init()
+  addon.LoadedVoicePacks:init()
 
   --self:Print(link)
   addon.MsgTools.DebugPrintf(link)

@@ -26,6 +26,7 @@ function Timer:stopTimer()
         addon:CancelTimer(Timer.checkBarTimer)
         Timer.checkBarTimer = nil
     end
+    addon.DBMtestEnable = false
 end
 
 function Timer:timerIsStarted()

@@ -71,6 +71,36 @@ function LoadedVoicePacks:getSpell(spellId)
     end
 end
 
+function LoadedVoicePacks:randomIndex()
+    addon.MsgTools.TracePrintf("LoadedVoicePacks:randomIndex()")
+    local n=0
+    for _ in pairs(self.loadedSpells) do n=n+1 end
+    return math.random(1, n)
+end
+
+function LoadedVoicePacks:getRandomSpellId()
+    local targetIndex = self:randomIndex()
+    local index=1
+    local random = nil
+    for spellId, spell in pairs(self.loadedSpells) do
+        if index == targetIndex then
+            random = spellId
+        end
+        index = index + 1
+    end
+    return random
+end
+
+
+function LoadedVoicePacks:hasLoadedSpells()
+    addon.MsgTools.TracePrintf("LoadedVoicePacks:hasLoadedSpells()")
+    local hasItem = false
+    for spellId, spell in pairs(self.loadedSpells) do
+        hasItem = true
+    end
+    return hasItem
+end
+
 function LoadedVoicePacks:printSpellNotManaged(spellId)
     if spellId ~= nil then
         local name, rank, icon, castTime, minRange, maxRange = GetSpellInfo(spellId)

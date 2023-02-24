@@ -30,6 +30,7 @@ function EventAnnouncementFrame:createIcon(iconSize, borderSpace)
   self.icon:SetPoint("CENTER")
   self.icon:SetTexture("interface/icons/inv_mushroom_11")
   self.icon:SetTexCoord(0.1, 0.9, 0.1, 0.9)
+  self.icon:SetAlpha(0.75)
 
   -- mainFrame.texture:SetAllPoints(mainFrame)
   -- mainFrame.alertIcon = mainFrame:CreateTexture(nil, "ARTWORK")
@@ -79,9 +80,9 @@ function EventAnnouncementFrame:createMenu(buttonSize, buttonBorderSpace, border
     InterfaceOptionsFrame_OpenToCategory("DBM Event Announcement")
   end)
 
-  self.audioButton:SetPoint("TOPLEFT", 0, borderSpace + buttonSize)
-  self.settingsButton:SetPoint("LEFT", self.audioButton, "RIGHT", buttonBorderSpace, 0)
-  self.lockButton:SetPoint("LEFT", self.settingsButton, "RIGHT", buttonBorderSpace, 0)
+  self.audioButton:SetPoint("TOPLEFT", self.frame, "TOPRIGHT", borderSpace, 0)
+  self.settingsButton:SetPoint("TOP", self.audioButton, "BOTTOM", 0, -buttonBorderSpace)
+  self.lockButton:SetPoint("TOP", self.settingsButton, "BOTTOM", 0, -buttonBorderSpace )
 
 end
 
@@ -103,8 +104,11 @@ end
 function EventAnnouncementFrame:createDebugMenu(buttonSize, buttonBorderSpace, borderSpace)
 
   self.fileButton = createButton(self.frame, buttonSize, "Interface\\Addons\\DBMEA\\textures\\icon-file-32px")
+  self.testButton = createButton(self.frame, buttonSize, "Interface\\Addons\\DBMEA\\textures\\icon-test-32px")
 
-  self.fileButton:SetPoint("BOTTOMLEFT", 0, - borderSpace - buttonSize)
+  self.fileButton:SetPoint("TOP", self.lockButton, "BOTTOM", 0, -buttonBorderSpace )
+  self.testButton:SetPoint("TOP", self.fileButton, "BOTTOM", 0, -buttonBorderSpace )
+  
 
   self.fileButton:SetScript('OnClick', function()
     if DLAPI then
@@ -113,16 +117,27 @@ function EventAnnouncementFrame:createDebugMenu(buttonSize, buttonBorderSpace, b
     end
   end)
 
+  self.testButton:SetScript('OnClick', function()
+    if DBM then
+      addon.DBMtestEnable = true
+      DBM:DemoMode()
+    end
+  end)
+
 end
 
 -------------------------------------------------------------------------------
 function EventAnnouncementFrame:showDebugMenu()
-  self.fileButton:Show()
+  if addon.Config:getDebugModeIsEnabled() then
+    self.fileButton:Show()
+    self.testButton:Show()
+  end
 end
 
 -------------------------------------------------------------------------------
 function EventAnnouncementFrame:hideDebugMenu()
   self.fileButton:Hide()
+  self.testButton:Hide()
 end
 
 -------------------------------------------------------------------------------
