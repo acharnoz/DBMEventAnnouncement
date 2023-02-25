@@ -17,8 +17,6 @@ Bug(s)
 Focus feature(s)
 - gestion des spells avec affichage par encounter pour la configuration
 - load addon with custom icon
-- manage show option
-- manage hide icon
 
 Other feature(s)
 - gestion des informations de spell

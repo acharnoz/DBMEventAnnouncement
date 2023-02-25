@@ -131,6 +131,15 @@ local options = {
             name = "Icon options",
             type = "group",
             args = {
+                FrameIsShown = {
+                    order = 1,
+                    type = "toggle",
+                    name = "Show DBMEA Icon Frame",
+                    desc = "Show DBMEA icon frame constantly, otherwise show it only when dbm timers are active.",
+                    get = "getFrameIsShown",
+                    set = "setFrameIsShown",
+                    width = "double"
+                },
                 EAFrameSizePercent = {
                     order = 1.75,
                     type = "range",
@@ -333,6 +342,17 @@ function ConfigDialog:setAnnounceTimeBeforeEvent(info, value)
     self.cfg.announceTimeBeforeEvent = tonumber(value)
 end
 
+-------------------------------------------------------------------------------
+function ConfigDialog:getFrameIsShown(info)
+    return self.cfg.frameIsShown
+end
+
+function ConfigDialog:setFrameIsShown(info, value)
+    self.cfg.frameIsShown = value
+    addon.EventAnnouncementFrame:updateFrameVisibility()
+end
+
+-------------------------------------------------------------------------------
 -- getInstanceID
 function ConfigDialog:getInstanceID(info)
     return self.selectedInstanceID

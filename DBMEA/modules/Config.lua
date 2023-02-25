@@ -15,6 +15,7 @@ function Config:getDefaultConfig()
             spellVoiceEnabled = {},
             iconFrameTop = 0,
             iconFrameLeft = 0,
+            frameIsShown = true,
         },
     }
     return defaults
@@ -24,6 +25,14 @@ function Config:init()
     self.db = LibStub("AceDB-3.0"):New("DBMEADB", self:getDefaultConfig(), true)
 end
 
+-------------------------------------------------------------------------------
+function Config:getFrameIsShown()
+    return self.db.profile.frameIsShown
+end
+
+function Config:setFrameIsShown(val)
+    self.db.profile.frameIsShown = val
+end
 
 -------------------------------------------------------------------------------
 function Config:getAllVoicesAreEnable()

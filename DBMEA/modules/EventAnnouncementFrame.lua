@@ -67,6 +67,7 @@ function EventAnnouncementFrame:createMenu(buttonSize, buttonBorderSpace, border
   else
     self.audioButton = createButton(self.frame, buttonSize, "Interface\\Addons\\DBMEA\\textures\\icon-no-audio-32px")
   end
+  self.hideButton = createButton(self.frame, buttonSize, "Interface\\Addons\\DBMEA\\textures\\icon-close-32px")
 
   self.lockButton.isUnlock = true
   self.lockButton:SetScript('OnClick', function()
@@ -96,10 +97,25 @@ function EventAnnouncementFrame:createMenu(buttonSize, buttonBorderSpace, border
     InterfaceOptionsFrame_OpenToCategory("DBM Event Announcement")
   end)
 
-  self.audioButton:SetPoint("TOPLEFT", self.frame, "TOPRIGHT", borderSpace, 0)
-  self.settingsButton:SetPoint("TOP", self.audioButton, "BOTTOM", 0, -buttonBorderSpace)
-  self.lockButton:SetPoint("TOP", self.settingsButton, "BOTTOM", 0, -buttonBorderSpace )
+  self.hideButton:SetScript('OnClick', function()
+    addon.Config.setFrameIsShown(false)
+    addon.EventAnnouncementFrame:updateFrameVisibility()
+  end)
 
+  self.audioButton:SetPoint("TOPLEFT", self.frame, "TOPRIGHT", borderSpace, 0)
+  self.lockButton:SetPoint("TOP", self.audioButton, "BOTTOM", 0, -buttonBorderSpace )
+  self.settingsButton:SetPoint("TOP", self.lockButton, "BOTTOM", 0, -buttonBorderSpace)
+  self.hideButton:SetPoint("TOP", self.settingsButton, "BOTTOM", 0, -buttonBorderSpace )
+
+end
+
+-------------------------------------------------------------------------------
+function EventAnnouncementFrame:updateFrameVisibility()
+  if addon.Config:getFrameIsShown() then
+    self.frame:Show()
+  else
+    self.frame:Hide()
+  end
 end
 
 -------------------------------------------------------------------------------
@@ -107,6 +123,7 @@ function EventAnnouncementFrame:showMenu()
   self.lockButton:Show()
   self.settingsButton:Show()
   self.audioButton:Show()
+  self.hideButton:Show()
 end
 
 -------------------------------------------------------------------------------
@@ -114,6 +131,7 @@ function EventAnnouncementFrame:hideMenu()
   self.lockButton:Hide()
   self.settingsButton:Hide()
   self.audioButton:Hide()
+  self.hideButton:Hide()
 end
 
 -------------------------------------------------------------------------------
@@ -122,7 +140,7 @@ function EventAnnouncementFrame:createDebugMenu(buttonSize, buttonBorderSpace, b
   self.fileButton = createButton(self.frame, buttonSize, "Interface\\Addons\\DBMEA\\textures\\icon-file-32px")
   self.testButton = createButton(self.frame, buttonSize, "Interface\\Addons\\DBMEA\\textures\\icon-test-32px")
 
-  self.fileButton:SetPoint("TOP", self.lockButton, "BOTTOM", 0, -buttonBorderSpace )
+  self.fileButton:SetPoint("TOP", self.hideButton, "BOTTOM", 0, -buttonBorderSpace )
   self.testButton:SetPoint("TOP", self.fileButton, "BOTTOM", 0, -buttonBorderSpace )
   
 
@@ -273,4 +291,5 @@ function EventAnnouncementFrame:init()
   self:hideMenu()
   self:hideDebugMenu()
   self:updateScale()
+  self:updateFrameVisibility()
 end
