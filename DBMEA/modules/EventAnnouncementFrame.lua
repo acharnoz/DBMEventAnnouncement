@@ -28,7 +28,7 @@ function EventAnnouncementFrame:createIcon(iconSize, borderSpace)
   self.icon = self.frame:CreateTexture("DBMEA_texture", "ARTWORK")
   self.icon:SetSize(iconSize, iconSize)
   self.icon:SetPoint("CENTER")
-  self.icon:SetTexture("interface/icons/inv_mushroom_11")
+  self.icon:SetTexture("Interface\\Addons\\DBMEA\\textures\\icon-DBMEA")
   self.icon:SetTexCoord(0.1, 0.9, 0.1, 0.9)
   self.icon:SetAlpha(0.75)
 
@@ -185,7 +185,7 @@ end
 -------------------------------------------------------------------------------
 function EventAnnouncementFrame:clearEvent()
   self.message:SetText("")
-  self.icon:SetTexture(236151)
+  self.icon:SetTexture("Interface\\Addons\\DBMEA\\textures\\icon-DBMEA")
   self.frame:Hide()
 end
 

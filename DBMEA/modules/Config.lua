@@ -10,7 +10,7 @@ function Config:getDefaultConfig()
             EAFrameSizePercent = 1,
             eventCleaningTime = 3,
             announceCleaningTime = 3,
-            debugModeIsEnabled = true,
+            debugModeIsEnabled = false,
             logLevel = 2,
             spellVoiceEnabled = {},
             iconFrameTop = 0,
