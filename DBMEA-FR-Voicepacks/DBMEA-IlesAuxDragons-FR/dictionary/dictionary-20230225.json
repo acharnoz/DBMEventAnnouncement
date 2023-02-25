@@ -1,0 +1,41 @@
+{
+    "name": "DBMEA-IlesAuxDragons-FR",
+    "lang": "FR",
+    "authors": [
+        "Milho (Dalaran)",
+        "Maseo (Cho'gall)"
+    ],
+    "version": "20230225",
+    "version_date": "2023-02-25",
+    "VPVEM_reference": "",
+    "dummy_text": "Text has not been translated yet",
+    "description": "",
+    "filename_to_translation": {
+        "sounds/1205/2515/383600.ogg": "Tempête environnante, imminent!",
+        "sounds/1205/2515/388980.ogg": "Frappe de la tempête, imminent!",
+        "sounds/1205/2515/387191.ogg": "Orage renforcé, imminent!",
+        "sounds/1205/2515/387199.ogg": "Tempête de Strunraan, imminent!",
+        "sounds/1205/2515/387265.ogg": "Surcharge, imminent!",
+        "sounds/1205/2515/387216.ogg": "Choc aquatique, imminent!",
+        "sounds/1205/2515/390295.ogg": "Expulsion en arc, imminent!",
+        "sounds/1205/2515/385980.ogg": "Vortex de tonnerre, imminent!",
+        "sounds/1205/2506/386259.ogg": "Impact fracassant, imminent!",
+        "sounds/1205/2506/387668.ogg": "Terre volatile, imminent!",
+        "sounds/1205/2506/385506.ogg": "Éveil des roches, imminent!",
+        "sounds/1205/2506/385652.ogg": "Trait de terre, imminent!",
+        "sounds/1205/2506/385270.ogg": "Secousse fracturante, imminent!",
+        "sounds/1205/2506/385879.ogg": "Flèche fracturée, imminent!",
+        "sounds/1205/2506/385137.ogg": "Souffle de schiste, imminent!",
+        "sounds/1205/2517/389431.ogg": "Flamme dissuasive, imminent!",
+        "sounds/1205/2517/389725.ogg": "Éruption de magma, imminent!",
+        "sounds/1205/2517/389514.ogg": "Souffle de lave, imminent!",
+        "sounds/1205/2517/391247.ogg": "Imprégnation de flammes, imminent!",
+        "sounds/1205/2517/391257.ogg": "Chaleur ardente, imminent!",
+        "sounds/1205/2517/390635.ogg": "Pluie de destruction, imminent!",
+        "sounds/1205/2518/389289.ogg": "Tempête glaciale, imminent!",
+        "sounds/1205/2518/389762.ogg": "Congélation, imminent!",
+        "sounds/1205/2518/388767.ogg": "Glace liante, imminent!",
+        "sounds/1205/2518/388925.ogg": "Souffle glacial, imminent!",
+        "sounds/1205/2518/388924.ogg": "Givre mordant, imminent!"
+    }
+}

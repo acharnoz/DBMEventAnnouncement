@@ -18,6 +18,7 @@ function EAVoicePack.new(...)
     self.mapId = 0
     self.lang = "EN"
     self.spellId2SoundPath = {}
+    self.spellId2EncounterId = {}
     return self
 end
 
@@ -56,10 +57,6 @@ function EAVoicePack:getLang()
     return self.lang
 end
 
-function EAVoicePack:setSpellId2SoundPath(spellId2SoundPath)
-    self.spellId2SoundPath = spellId2SoundPath
-end
-
 function EAVoicePack:getSpellId2SoundPath()
     return self.spellId2SoundPath
 end
@@ -85,9 +82,23 @@ function EAVoicePack:getSpellPathFromSpellName(spellName)
     return result
 end
 
-function EAVoicePack:addSpellPath(idSpell, spellPath)
-    addon.MsgTools.TracePrintf("EAVoicePack:addSpellPath(idSpell=%s, spellPath=%s)", idSpell, spellPath)
+function EAVoicePack:addSpellPath(idEncounter, idSpell, spellPath)
+    addon.MsgTools.TracePrintf("EAVoicePack:addSpellPath(idEncounter=%s, idSpell=%s, spellPath=%s)", idEncounter, idSpell, spellPath)
     self.spellId2SoundPath[idSpell] = spellPath
+    self.spellId2EncounterId[idSpell] = idEncounter
+end
+
+function EAVoicePack:getEncounterSpellMap()
+    local encounterId2SpellId = {}
+    for spellId, encounterId in pairs(self.spellId2EncounterId) do
+        if encounterId2SpellId[encounterId] ~= nil then
+            local table = encounterId2SpellId[encounterId]
+            table[#table+1]=spellId
+        else
+            encounterId2SpellId[encounterId] = {spellId}
+        end
+    end
+    return encounterId2SpellId
 end
 
 function EAVoicePack:DebugPrint()

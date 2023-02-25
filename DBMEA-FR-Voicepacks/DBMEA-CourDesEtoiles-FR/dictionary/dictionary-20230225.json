@@ -1,0 +1,36 @@
+{
+    "name": "DBMEA-CourDesEtoiles-FR",
+    "lang": "FR",
+    "authors": [
+        "Milho (Dalaran)",
+        "Maseo (Cho'gall)"
+    ],
+    "version": "20230225",
+    "version_date": "2023-02-25",
+    "VPVEM_reference": "",
+    "dummy_text": "Text has not been translated yet",
+    "description": "",
+    "filename_to_translation": {
+        "sounds/800/1718/206574.ogg": "Entaille résonnante, imminent!",
+        "sounds/800/1718/219498.ogg": "Balayeur, imminent!",
+        "sounds/800/1718/207278.ogg": "Entrave des Arcanes, imminent!",
+        "sounds/800/1718/207806.ogg": "Avertir le relais, imminent!",
+        "sounds/800/1718/215204.ogg": "Contretemps, imminent!",
+        "sounds/800/1718/207815.ogg": "Flacon de la nuit solennelle, imminent!",
+        "sounds/800/1719/207887.ogg": "Éruption infernale, imminent!",
+        "sounds/800/1719/224374.ogg": "Éclair de feu, imminent!",
+        "sounds/800/1719/224377.ogg": "Braises mouvantes, imminent!",
+        "sounds/800/1719/207907.ogg": "Intensité brûlante, imminent!",
+        "sounds/800/1719/208165.ogg": "Flétrissement d’âme, imminent!",
+        "sounds/800/1719/207979.ogg": "Onde de choc, imminent!",
+        "sounds/800/1719/397903.ogg": "Bond écrasant, imminent!",
+        "sounds/800/1719/207980.ogg": "Rayon de désintégration, imminent!",
+        "sounds/800/1719/397907.ogg": "Malédiction imminente, imminent!",
+        "sounds/800/1719/209378.ogg": "Lames tourbillonnantes, imminent!",
+        "sounds/800/1719/397892.ogg": "Cri de douleur, imminent!",
+        "sounds/800/1720/209602.ogg": "Jaillissement de lames, imminent!",
+        "sounds/800/1720/224333.ogg": "Linceul de vents, imminent!",
+        "sounds/800/1720/209628.ogg": "Trombe perçante, imminent!",
+        "sounds/800/1720/209676.ogg": "Maelström tranchant, imminent!"
+    }
+}

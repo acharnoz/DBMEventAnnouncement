@@ -1,6 +1,6 @@
 ## Interface: 100005
-## Title:|cffffe00a<|r|cffff7d0aDBMEA|r|cffffe00a>|r |cff69ccf0Terres sacrees d'Ombrelune|r
-## Version: 20230212
+## Title:|cffffe00a<|r|cff66c0c0DBMEA|r|cffffe00a>|r |cffffffffTerres sacrees d'Ombrelune|r
+## Version: 20230225
 ## Notes: This addon includes sounds for instance "Terres sacrees d'Ombrelune"
 ## Author: Milho
 ## RequiredDeps: DBMEA

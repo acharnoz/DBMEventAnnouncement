@@ -15,20 +15,21 @@ Bug(s)
 - Fix spell only defineds with DMB message and/or DMB icon
 
 Focus feature(s)
-- gestion des spells avec affichage par encounter pour la configuration
 - load addon with custom icon
 
 Other feature(s)
-- gestion des informations de spell
-- gestion du clic config -> journal
-- gestion du clic icone -> journal
-- gestion de profil par défaut ? tank, dps, heal ?
-- désactiver les bars dbms
-- gérer le multilangue en texte
-- gérer la selection d'un langue en voicepack
+- show on icon frame few spells informations
+- manage button to open journal instance (encoutner ? spell ?)
+- manage config dialog to open journal instance (encoutner ? spell ?)
+- manage spell enable/desable profile associated to your role (tank, dps, heal)
+- manage an option to desable/enable dbm bar
+- manage multilingue texts
+- manage the lang for voices (from detected voicepack)
 - manage slash command show
 - manage frame isUnlock option save
 - Manage config dialog feature to desable all sounds
+- Manage icon for heroic / mythic spell in spell config dialog
+- Manage select, unselect all the instance, all the enncounter in spell config dialog
 
 # Commands reminder
 - /console scriptErrors 1 to enable frame to catch script errors

@@ -1,5 +1,5 @@
 ## Interface: 100005
-## Title:|cffffd200DBM Event Announcement|r
+## Title:|cffffe00a<|r|cff66c0c0DBMEA|r|cffffe00a>|r |cffffd200DBM Event Announcement|r
 ## Version: 1
 ## Notes: This AddOn does nothing but display a frame with a button
 ## Author: Milho

@@ -267,12 +267,35 @@ function ConfigDialog:refreshSpellList()
     end
 end
 
+-- function ConfigDialog:addSpellListFromVoicePack(voicepack)
+--     local order = 0
+--     for spellId, path in pairs(voicepack.spellId2SoundPath) do
+--         order = order + 1
+--         self:addSpellList(order, spellId)
+--     end
+-- end
 function ConfigDialog:addSpellListFromVoicePack(voicepack)
     local order = 0
-    for spellId, path in pairs(voicepack.spellId2SoundPath) do
+    local encounterId2SpellId = voicepack:getEncounterSpellMap()
+    for encounterId, spellIds in pairs(encounterId2SpellId) do
         order = order + 1
-        self:addSpellList(order, spellId)
+        self:addSpellEncounter(order, encounterId)
+        for index, spellId in pairs(spellIds) do
+            order = order + 1
+            self:addSpellList(order, spellId)
+        end
     end
+end
+
+function ConfigDialog:addSpellEncounter(order, encounterId)
+    local encounterName, description, journalEncounterID, rootSectionID, link, journalInstanceID, dungeonEncounterID, instanceID = EJ_GetEncounterInfo(encounterId)
+    local key = string.format("encounter_%d", encounterId)
+    local val = {
+            order = order,
+            type = "header",
+            name = encounterName
+        }
+    spellOptions.args.spellList.args[key] = val
 end
 
 function ConfigDialog:addSpellList(order, spellId)

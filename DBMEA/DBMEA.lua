@@ -49,7 +49,7 @@ function addon:PLAYER_ENTERING_WORLD()
   end
 end
 
-function addon:createEAVoicePack(voicePackName, instanceId, lang)
+function addon:createEAVoicePack(voicePackName, expansionId, instanceId, lang)
   addon.MsgTools.TracePrintf("DBMEA:createEAVoicePack(voicePackName=%s, instanceId=%s, lang=%s)", voicePackName,
     instanceId, lang)
   local vp = addon.EventAnnouncementVoicePack:createEAVoicePack()

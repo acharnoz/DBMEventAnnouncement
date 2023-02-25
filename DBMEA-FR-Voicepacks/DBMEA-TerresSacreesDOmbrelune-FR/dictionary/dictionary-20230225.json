@@ -1,0 +1,36 @@
+{
+    "name": "DBMEA-TerresSacreesDOmbrelune-FR",
+    "lang": "FR",
+    "authors": [
+        "Milho (Dalaran)",
+        "Maseo (Cho'gall)"
+    ],
+    "version": "20230225",
+    "version_date": "2023-02-25",
+    "VPVEM_reference": "",
+    "dummy_text": "Text has not been translated yet",
+    "description": "",
+    "filename_to_translation": {
+        "sounds/537/1139/162696.ogg": "Pic mortel, imminent!",
+        "sounds/537/1139/153153.ogg": "Sombre communion, imminent!",
+        "sounds/537/1139/153240.ogg": "Tire-Dague, imminent!",
+        "sounds/537/1139/153093.ogg": "Murmures de l’Étoile noire, imminent!",
+        "sounds/537/1139/164686.ogg": "Sombre éclipse, imminent!",
+        "sounds/537/1139/162652.ogg": "Pureté lunaire, imminent!",
+        "sounds/537/1168/153623.ogg": "Transfert planaire, imminent!",
+        "sounds/537/1168/152801.ogg": "Vortex du Vide, imminent!",
+        "sounds/537/1168/152792.ogg": "Trait de Vide, imminent!",
+        "sounds/537/1168/153067.ogg": "Dévastation du Vide, imminent!",
+        "sounds/537/1168/152979.ogg": "Voile de l’âme, imminent!",
+        "sounds/537/1168/153033.ogg": "Âme retrouvée, imminent!",
+        "sounds/537/1140/153692.ogg": "Poix nécrotique, imminent!",
+        "sounds/537/1140/165579.ogg": "Souffle cadavérique, imminent!",
+        "sounds/537/1140/153681.ogg": "Crachat fétide, imminent!",
+        "sounds/537/1140/154175.ogg": "Plaquage, imminent!",
+        "sounds/537/1140/153804.ogg": "Inhalation, imminent!",
+        "sounds/537/1140/153496.ogg": "Crachat fétide, imminent!",
+        "sounds/537/1160/154442.ogg": "Malice, imminent!",
+        "sounds/537/1160/175988.ogg": "Présage de mort, imminent!",
+        "sounds/537/1160/154469.ogg": "Rituel des ossements, imminent!"
+    }
+}
