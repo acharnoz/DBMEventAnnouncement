@@ -26,7 +26,7 @@ modules/MsgTools.lua
 modules/EventAnnouncement.lua
 modules/EventAnnouncementVoicePack.lua
 modules/LoadedVoicePacks.lua
-modules/EAFrame.lua
+modules/EventAnnouncementFrame.lua
 modules/Timers.lua
 
 Structures.lua

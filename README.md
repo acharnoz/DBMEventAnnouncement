@@ -13,7 +13,6 @@ This addon is created and matained by Milho/Maseo (Dalaran EU Realm). Artificial
 Bug(s)
 - Fix refresh icon frame on profile reset
 - Fix spell only defineds with DMB message and/or DMB icon
-- Fix print loaded spell when the player is not in instance
 
 Focus feature(s)
 - resize dynamique
