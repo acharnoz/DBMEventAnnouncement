@@ -24,10 +24,8 @@ function addon:OnInitialize()
   addon.EventAnnouncementFrame:init()
   addon.LoadedVoicePacks:init()
 
-  --self:Print(link)
-  addon.MsgTools.DebugPrintf(link)
-  self:HandleEvents()
 
+  self:HandleEvents()
   addon:RegisterEvent("PLAYER_ENTERING_WORLD")
 
   addon.MsgTools.TracePrintf("DBMEA:OnInitialize() End")

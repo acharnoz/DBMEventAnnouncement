@@ -45,25 +45,25 @@ function Timer:eventAnnouncement(ea)
             addon.EventAnnouncementFrame:setEvent(ea.message, ea.icon)
         end
 
-        -- Check if spell id is enabled
-        if ea.spellIdEnabled then
-
-            -- Annouce ea if spell id is known
-            if ea.newSpellID ~= nil then
-                
-                local spell = addon.LoadedVoicePacks:getSpell(ea.newSpellID)
-                local spellPath = spell.soundPath
-                PlaySoundFile(spellPath, self.audioChannel)
-                
-            else -- newSpellId not found
-                addon.MsgTools.ErrorPrintf("Spell is not managed id=%s, msg=%s, spellId=%s/%s, icon=|T%d:16|t", ea.id,
+        if addon.Config:getAllVoicesAreEnable() then
+            -- Check if spell id is enabled
+            if ea.spellIdEnabled then
+                -- Annouce ea if spell id is known
+                if ea.newSpellID ~= nil then
+                    local spell = addon.LoadedVoicePacks:getSpell(ea.newSpellID)
+                    local spellPath = spell.soundPath
+                    PlaySoundFile(spellPath, self.audioChannel)
+                else -- newSpellId not found
+                    addon.MsgTools.ErrorPrintf("Spell is not managed id=%s, msg=%s, spellId=%s/%s, icon=|T%d:16|t", ea
+                    .id,
                         ea.message, tostring(ea.spellId), tostring(ea.newSpellID), ea.icon)
 
-                self:playDummySound()
+                    self:playDummySound()
+                end
+            else -- Spell id is desable
+                addon.MsgTools.DebugPrintf("Spell is desable id=%s, msg=%s, spellId=%s/%s, icon=|T%d:16|t", ea.id,
+                    ea.message, tostring(ea.spellId), tostring(ea.newSpellID), ea.icon)
             end
-
-        else -- Spell id is desable
-            addon.MsgTools.DebugPrintf("Spell is desable id=%s, msg=%s, spellId=%s/%s, icon=|T%d:16|t", ea.id, ea.message, tostring(ea.spellId), tostring(ea.newSpellID), ea.icon)
         end
 
         ea.announced = true

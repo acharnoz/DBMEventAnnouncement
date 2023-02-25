@@ -62,8 +62,12 @@ function EventAnnouncementFrame:createMenu(buttonSize, buttonBorderSpace, border
   
   self.lockButton = createButton(self.frame, buttonSize, "Interface\\Addons\\DBMEA\\textures\\icon-unlock-32px")
   self.settingsButton = createButton(self.frame, buttonSize, "Interface\\Addons\\DBMEA\\textures\\icon-settings-32px")
-  self.audioButton = createButton(self.frame, buttonSize, "Interface\\Addons\\DBMEA\\textures\\icon-audio-32px")
-  
+  if (addon.Config:getAllVoicesAreEnable()) then
+    self.audioButton = createButton(self.frame, buttonSize, "Interface\\Addons\\DBMEA\\textures\\icon-audio-32px")
+  else
+    self.audioButton = createButton(self.frame, buttonSize, "Interface\\Addons\\DBMEA\\textures\\icon-no-audio-32px")
+  end
+
   self.lockButton.isUnlock = true
   self.lockButton:SetScript('OnClick', function()
     if (self.lockButton.isUnlock) then
@@ -74,6 +78,18 @@ function EventAnnouncementFrame:createMenu(buttonSize, buttonBorderSpace, border
       self.lockButton.isUnlock = true
     end
     self.frame:SetMovable(self.lockButton.isUnlock)
+  end)
+
+  
+  self.audioButton:SetScript('OnClick', function()
+    if (addon.Config:getAllVoicesAreEnable()) then
+      self.audioButton.texture:SetTexture("Interface\\Addons\\DBMEA\\textures\\icon-no-audio-32px")
+      addon.Config:setAllVoicesAreEnable(false)
+    else
+      self.audioButton.texture:SetTexture("Interface\\Addons\\DBMEA\\textures\\icon-audio-32px")
+      addon.Config:setAllVoicesAreEnable(true)
+    end
+
   end)
 
   self.settingsButton:SetScript('OnClick', function()

@@ -9,19 +9,20 @@ This addon is created and matained by Milho/Maseo (Dalaran EU Realm). Artificial
 
 # Revision history
 
-
-# Next steps
-Bug
+# Backlog
+Bug(s)
 - Fix refresh icon frame on profile reset
 - Fix spell only defineds with DMB message and/or DMB icon
 - Fix print loaded spell when the player is not in instance
 
-Feature
-- Icon and config dialog feature to desable all sounds
+Focus feature(s)
 - resize dynamique
 - gestion des spells avec affichage par encounter pour la configuration
 - load addon with custom icon
+- manage show option
+- manage hide icon
 
+Other feature(s)
 - gestion des informations de spell
 - gestion du clic config -> journal
 - gestion du clic icone -> journal
@@ -29,9 +30,11 @@ Feature
 - désactiver les bars dbms
 - gérer le multilangue en texte
 - gérer la selection d'un langue en voicepack
+- manage slash command show
+- manage frame isUnlock option save
+- Manage config dialog feature to desable all sounds
 
-
-# Reminder
+# Commands reminder
 - /console scriptErrors 1 to enable frame to catch script errors
 - /console scriptErrors 0 to desable frame to catch script errors
 - /dump EJ_GetEncounterInfo(95)
