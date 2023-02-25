@@ -234,14 +234,23 @@ function EventAnnouncementFrame:OnLeave()
 end
 
 -------------------------------------------------------------------------------
+function EventAnnouncementFrame:updateScale()
+  self.ICON_SIZE = 60 * addon.Config:getEAFrameSizePercent()
+  self.BORDER_SPACE = 4 * addon.Config:getEAFrameSizePercent()
+  self.FRAME_HEIGHT = self.ICON_SIZE + 2 * self.BORDER_SPACE
+  self.FRAME_WIDTH = self.FRAME_HEIGHT
+  self.icon:SetSize(self.ICON_SIZE, self.ICON_SIZE)
+  self.frame:SetSize(self.FRAME_WIDTH, self.FRAME_HEIGHT)
+end
+-------------------------------------------------------------------------------
 function EventAnnouncementFrame:init()
   self.frame = nil
   self.eventCleaningTimer = nil
   self.menuHideTimer = nil
 
-  self.ICON_SIZE = 60 * addon.Config:getEAFrameSizePercent()
+  self.ICON_SIZE = 60
   self.BORDER_SPACE = 4
-  self.BUTTON_SIZE = 12
+  self.BUTTON_SIZE = 14
   self.BUTTON_BORDER_SPACE = 2
   self.FRAME_HEIGHT = self.ICON_SIZE + 2 * self.BORDER_SPACE
   self.FRAME_WIDTH = self.FRAME_HEIGHT
@@ -263,5 +272,5 @@ function EventAnnouncementFrame:init()
   self.frame:Show()
   self:hideMenu()
   self:hideDebugMenu()
-
+  self:updateScale()
 end

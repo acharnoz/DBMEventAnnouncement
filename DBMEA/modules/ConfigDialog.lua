@@ -321,6 +321,7 @@ end
 
 function ConfigDialog:setEAFrameSizePercent(info, value)
     self.cfg.EAFrameSizePercent = value
+    addon.EventAnnouncementFrame:updateScale()
 end
 
 -- AnnounceTimeBeforeEvent

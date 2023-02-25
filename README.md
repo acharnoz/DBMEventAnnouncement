@@ -15,7 +15,6 @@ Bug(s)
 - Fix spell only defineds with DMB message and/or DMB icon
 
 Focus feature(s)
-- resize dynamique
 - gestion des spells avec affichage par encounter pour la configuration
 - load addon with custom icon
 - manage show option
