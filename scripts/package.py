@@ -1,6 +1,7 @@
 import shutil
 from pathlib import Path
 
+
 def replace_keys(key_to_var, filepath: Path):
     # Opening our text file in read only
     # mode using the open() function
@@ -27,11 +28,11 @@ def replace_keys(key_to_var, filepath: Path):
     print("Text replaced")
 
 key_to_var = {}
-key_to_var["DBMEA_VERSION_KEY"] = "0.1.1"
+key_to_var["DBMEA_VERSION_KEY"] = "0.1.0"
 
-src1=Path("G:\\Dev\\DBMEventAnnouncement\\DBMEA")
-src2=Path("G:\\Dev\\DBMEventAnnouncement\\DBMEA-FR-Voicepacks")
-wow_addon_path=Path("G:\\World of Warcraft\\_retail_\\Interface\\AddOns")
+src1 = Path("G:\\Dev\\DBMEventAnnouncement\\DBMEA")
+src2 = Path("G:\\Dev\\DBMEventAnnouncement\\DBMEA-FR-Voicepacks")
+wow_addon_pkg = Path("G:\\Dev\\DBMEventAnnouncement\\package\\DBMEA")
 
 addons = [src1]
 for child in src2.iterdir():
@@ -39,10 +40,13 @@ for child in src2.iterdir():
 
 for p in addons:
     addon_name = p.name
-    dest = wow_addon_path / addon_name
+    dest = wow_addon_pkg / addon_name
     if dest.exists():
         shutil.rmtree(dest)
     shutil.copytree(p, dest)
 
 output_DBMEA_toc = Path(wow_addon_pkg / "DBMEA" / "DBMEA.toc")
 replace_keys(key_to_var, output_DBMEA_toc)
+
+output_filename = Path(wow_addon_pkg.parent / (wow_addon_pkg.name + "_v" + key_to_var["DBMEA_VERSION_KEY"]) )
+shutil.make_archive(output_filename, 'zip', wow_addon_pkg)
