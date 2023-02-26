@@ -1,7 +1,7 @@
 ## Interface: 100005
 ## Title:|cffffe00a<|r|cff66c0c0DBMEA|r|cffffe00a>|r |cffffd200DBM Event Announcement|r
 ## Version: DBMEA_VERSION_KEY
-## Notes: This AddOn does nothing but display a frame with a button
+## Notes: This addon is a mod to Deadly Boss Mods (DBM) use to announce X seconds before the end of a timer the incoming spell.
 ## Author: Milho
 ## SavedVariables: DBMEADB
 ## RequiredDeps: DBM-Core
