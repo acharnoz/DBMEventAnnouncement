@@ -44,5 +44,5 @@ for p in addons:
         shutil.rmtree(dest)
     shutil.copytree(p, dest)
 
-output_DBMEA_toc = Path(wow_addon_pkg / "DBMEA" / "DBMEA.toc")
+output_DBMEA_toc = Path(wow_addon_path / "DBMEA" / "DBMEA.toc")
 replace_keys(key_to_var, output_DBMEA_toc)
