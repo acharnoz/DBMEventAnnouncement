@@ -1,21 +1,22 @@
 ## Interface: 100005
 ## Title:|cffffe00a<|r|cff66c0c0DBMEA|r|cffffe00a>|r |cffffd200DBM Event Announcement|r
-## Version: 1
+## Version: DBMEA_VERSION_KEY
 ## Notes: This AddOn does nothing but display a frame with a button
 ## Author: Milho
 ## SavedVariables: DBMEADB
 ## RequiredDeps: DBM-Core
-## OptionalDeps: Ace3
+## OptionalDependencies: LibStub, CallbackHandler-1.0, AceAddon-3.0, AceEvent-3.0, AceDB-3.0, AceConsole-3.0, AceGUI-3.0, AceConfig-3.0, AceTimer-3.0, AceDBOptions-3.0
 
 Libs\LibStub\LibStub.lua
 Libs\CallbackHandler-1.0\CallbackHandler-1.0.xml
 Libs\AceAddon-3.0\AceAddon-3.0.xml
 Libs\AceEvent-3.0\AceEvent-3.0.xml
+Libs\AceTimer-3.0\AceTimer-3.0.xml
 Libs\AceDB-3.0\AceDB-3.0.xml
+Libs\AceDBOptions-3.0\AceDBOptions-3.0.xml
 Libs\AceConsole-3.0\AceConsole-3.0.xml
 Libs\AceGUI-3.0\AceGUI-3.0.xml
 Libs\AceConfig-3.0\AceConfig-3.0.xml
-Libs\AceTimer-3.0\AceTimer-3.0.xml
 
 DBMEA.lua
 
