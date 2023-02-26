@@ -98,7 +98,7 @@ function EventAnnouncementFrame:createMenu(buttonSize, buttonBorderSpace, border
   end)
 
   self.hideButton:SetScript('OnClick', function()
-    addon.Config.setFrameIsShown(false)
+    addon.Config:setFrameIsShown(false)
     addon.EventAnnouncementFrame:updateFrameVisibility()
   end)
 
