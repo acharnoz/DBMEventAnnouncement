@@ -16,6 +16,7 @@ function Config:getDefaultConfig()
             iconFrameTop = 0,
             iconFrameLeft = 0,
             frameIsShown = true,
+            selectedLang = "EN",
         },
     }
     return defaults
@@ -23,6 +24,20 @@ end
 
 function Config:init()
     self.db = LibStub("AceDB-3.0"):New("DBMEADB", self:getDefaultConfig(), true)
+end
+
+-------------------------------------------------------------------------------
+function Config:getSelectedLang()
+
+    if not addon.EventAnnouncement:hasVoicePackDBForLang(self.db.profile.selectedLang) then
+        self.db.profile.selectedLang = addon.EventAnnouncement:getAvailableLangs()[1]
+    end
+
+    return self.db.profile.selectedLang
+end
+
+function Config:setSelectedLang(val)
+    self.db.profile.selectedLang = val
 end
 
 -------------------------------------------------------------------------------
@@ -108,7 +123,6 @@ function Config:registerVoicePack(voicepack)
     for spellId, path in pairs(voicepack.spellId2SoundPath) do
         self:addSpellVoice(tonumber(spellId))
     end
-    addon.ConfigDialog:addVoicePack(voicepack)
 end
 
 -------------------------------------------------------------------------------
@@ -134,7 +148,7 @@ end
 
 -------------------------------------------------------------------------------
 function Config:resetSpellVoiceEnabled()
-    for instanceID, vp in pairs(addon.EventAnnouncement.voicePackDB) do
+    for instanceID, vp in pairs(addon.EventAnnouncement:getCurrentVoicePackDB()) do
         self:registerVoicePack(vp)
     end
 end

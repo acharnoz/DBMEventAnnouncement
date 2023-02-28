@@ -188,11 +188,21 @@ local spellOptions = {
             name = "List of all spells loaded and managed by this addon. We have the possibility to enable/disable each spell.",
             fontSize = "medium",
         },
+        selectedLang = {
+            order = 2,
+            type = "select",
+            values = {
+            },
+            name = "Current voicepacks lang",
+            desc = "Select the lang of voicepacks",
+            get = "getSelectedLang",
+            set = "SetSelectedLang",
+            width = "double"
+        },
         instanceId = {
             order = 2,
             type = "select",
             values = {
-                empty = "Empty"
             },
             name = "Instance name",
             desc = "Select the instance to configure spells",
@@ -212,7 +222,8 @@ local spellOptions = {
 function ConfigDialog:init()
     self.cfg = addon.Config:getConfig()
     self.voicepack = nil
-    self.selectedInstanceID = "empty"
+    self.selectedInstanceID = nil
+    self.langsAreUpdated = false
 
     AC:RegisterOptionsTable("DBMEA_optionsHeader", optionsHeader)
     self.optionsFrame = ACD:AddToBlizOptions("DBMEA_optionsHeader", "DBM Event Announcement")
@@ -235,27 +246,15 @@ function ConfigDialog:OnProfileEnable()
     addon.Config:resetSpellVoiceEnabled()
 end
 
-function ConfigDialog:refreshDialog()
-    options.args.moreoptions.args.toto = {
-        order = 1,
-        type = "input",
-        name = "Announcement time before event",
-        desc = "Time (in seconds) before the event to announce the spell",
-        get = "getAnnounceTimeBeforeEvent",
-        set = "setAnnounceTimeBeforeEvent",
-        width = "double"
-    }
-end
-
 function ConfigDialog:refreshSpellList()
     -- Clear the map
     spellOptions.args.spellList.args = {}
 
-    if self.selectedInstanceID ~= "empty" then
+    if self.selectedInstanceID ~= nil then
         -- Fill the map with the voicepack information
         local instanceName, description, bgImage, buttonImage1, loreImage, buttonImage2, dungeonAreaMapID, link, shouldDisplayDifficulty, mapID =
         EJ_GetInstanceInfo(self.selectedInstanceID)
-        local voicepack = addon.EventAnnouncement.voicePackDB[mapID]
+        local voicepack = addon.EventAnnouncement:getCurrentVoicePack(mapID)
         self:addSpellListFromVoicePack(voicepack)
     else
         local desc1 = {
@@ -315,10 +314,6 @@ function ConfigDialog:addSpellList(order, spellId)
     spellOptions.args.spellList.args[key] = val
 end
 
-function ConfigDialog:addVoicePack(voicepack)
-    spellOptions.args.instanceId.values[tostring(voicepack:getInstanceId())] = voicepack:getInstanceName()
-end
-
 -- EventCleaningTime
 function ConfigDialog:getEventCleaningTime(info)
     return tostring(self.cfg.eventCleaningTime)
@@ -376,8 +371,45 @@ function ConfigDialog:setFrameIsShown(info, value)
 end
 
 -------------------------------------------------------------------------------
--- getInstanceID
+function ConfigDialog:refreshAvailabeLangs()
+    if not self.langsAreUpdated then
+        local langs = addon.EventAnnouncement:getAvailableLangs()
+        spellOptions.args.selectedLang.values = {}
+        for i = 1, #langs do
+            spellOptions.args.selectedLang.values[langs[i]] = langs[i]
+        end
+        LibStub("AceConfigRegistry-3.0"):NotifyChange("DBMEA_spellOptions")
+        self.langsAreUpdated = true
+    end
+end
+
+function ConfigDialog:getSelectedLang(info)
+    self:refreshAvailabeLangs()
+    return addon.Config:getSelectedLang()
+end
+
+function ConfigDialog:SetSelectedLang(info, value)
+    addon.Config:setSelectedLang(value)
+    self:refreshAvailabeIds()
+    self:refreshSpellList()
+end
+
+-------------------------------------------------------------------------------
+function ConfigDialog:refreshAvailabeIds()
+    local voicePackDB = addon.EventAnnouncement:getCurrentVoicePackDB()
+    spellOptions.args.instanceId.values = {}
+    local selectedInstanceSetted = false
+    for mapID, vp in pairs(voicePackDB) do
+        spellOptions.args.instanceId.values[tostring(vp:getInstanceId())] = vp:getInstanceName()
+        if not selectedInstanceSetted then
+            self.selectedInstanceID = tostring(vp:getInstanceId())
+            selectedInstanceSetted = true
+        end
+    end
+end
+
 function ConfigDialog:getInstanceID(info)
+    self:refreshAvailabeIds()
     return self.selectedInstanceID
 end
 
@@ -386,6 +418,8 @@ function ConfigDialog:setInstanceID(info, value)
     self.selectedInstanceID = value
     self:refreshSpellList()
 end
+
+-------------------------------------------------------------------------------
 
 function ConfigDialog:getToggleSpell(info)
     local split = info[#info]:find("_");

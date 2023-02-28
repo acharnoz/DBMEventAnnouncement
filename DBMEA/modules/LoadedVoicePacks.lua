@@ -9,10 +9,10 @@ function LoadedVoicePacks:init()
 end
 
 function LoadedVoicePacks:setInstanceMapId(instanceMapId)
-    addon.MsgTools.TracePrintf("setInstanceMapId(instanceId)")
+    addon.MsgTools.TracePrintf("setInstanceMapId(instanceId=%s)",instanceMapId)
     self.loadedSpells = {}
     self.equivalents = {}
-    local voicepacks = addon.EventAnnouncement.voicePackDB
+    local voicepacks = addon.EventAnnouncement:getCurrentVoicePackDB()
     for iid, vp in pairs(voicepacks) do
         if iid == instanceMapId then
             addon.MsgTools.DebugPrintf("VoicePacks found for instance %s (instanceMapId=%d)", vp:getInstanceName(), instanceMapId)

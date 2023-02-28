@@ -31,10 +31,15 @@ key_to_var["DBMEA_VERSION_KEY"] = "0.1.2"
 
 src1=Path("G:\\Dev\\DBMEventAnnouncement\\DBMEA")
 src2=Path("G:\\Dev\\DBMEventAnnouncement\\DBMEA-FR-Voicepacks")
+src3=Path("G:\\Dev\\DBMEventAnnouncement\\DBMEA-EN-Voicepacks")
 wow_addon_path=Path("G:\\World of Warcraft\\_retail_\\Interface\\AddOns")
 
 addons = [src1]
+
 for child in src2.iterdir():
+    addons.append(child)
+
+for child in src3.iterdir():
     addons.append(child)
 
 for p in addons:
