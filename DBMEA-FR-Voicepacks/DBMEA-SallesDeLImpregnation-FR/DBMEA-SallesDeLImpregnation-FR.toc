@@ -1,8 +1,0 @@
-## Interface: 100005
-## Title:|cffffe00a<|r|cff66c0c0DBMEA|r|cffffe00a>|r |cffffffffSalles de l'Impregnation|r
-## Version: 20230225
-## Notes: This addon includes sounds for instance "Salles de l'Impregnation"
-## Author: Milho
-## RequiredDeps: DBMEA
-
-DBMEA-SallesDeLImpregnation-FR.lua

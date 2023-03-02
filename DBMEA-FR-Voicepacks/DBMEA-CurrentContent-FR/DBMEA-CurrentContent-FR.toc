@@ -1,0 +1,8 @@
+## Interface: 100005
+## Title:|cffffe00a<|r|cff66c0c0DBMEA|r|cffffe00a>|r |cffffffffCurrent Content (FR)|r
+## Version: 20230302
+## Notes: This addon includes sounds for: Académie d’Algeth’ar, Creux des Fougerobes, Salles de l’Imprégnation, Neltharus, Bassins de l’Essence rubis, Caveau d’Azur, L’offensive nokhud, Uldaman : l’héritage de Tyr, Îles aux Dragons, Caveau des Incarnations, Salles des Valeureux, Cour des Étoiles, Terres sacrées d’Ombrelune, Temple du Serpent de jade 
+## Author: Milho
+## RequiredDeps: DBMEA
+
+DBMEA-CurrentContent-FR.lua
