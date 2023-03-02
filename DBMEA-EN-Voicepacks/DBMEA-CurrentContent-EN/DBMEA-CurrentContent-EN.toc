@@ -1,0 +1,8 @@
+## Interface: 100005
+## Title:|cffffe00a<|r|cff66c0c0DBMEA|r|cffffe00a>|r |cffffffffCurrent Content (EN)|r
+## Version: 20230301
+## Notes: This addon includes sounds for: Algeth'ar Academy, Brackenhide Hollow, Halls of Infusion, Neltharus, Ruby Life Pools, The Azure Vault, The Nokhud Offensive, Uldaman: Legacy of Tyr, Dragon Isles, Vault of the Incarnates, Halls of Valor, Court of Stars, Shadowmoon Burial Grounds, Temple of the Jade Serpent 
+## Author: Milho
+## RequiredDeps: DBMEA
+
+DBMEA-CurrentContent-EN.lua
