@@ -32,9 +32,6 @@ local function DBMEventCallback(event, ...)
     bar.spellId = spellId
 
     if addon.DBMtestEnable then
-      if not addon.LoadedVoicePacks:hasLoadedSpells() then
-        addon.EventAnnouncement:loadRandomVoicePack()
-      end
       bar.spellId =  addon.LoadedVoicePacks:getRandomSpellId()
     end
 

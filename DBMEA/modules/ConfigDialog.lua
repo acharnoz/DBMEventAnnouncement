@@ -223,7 +223,8 @@ function ConfigDialog:init()
     self.cfg = addon.Config:getConfig()
     self.voicepack = nil
     self.selectedInstanceID = nil
-    self.langsAreUpdated = false
+    self.updateLangsRequired = true
+    self.updateInstanceIdsRequired = true
 
     AC:RegisterOptionsTable("DBMEA_optionsHeader", optionsHeader)
     self.optionsFrame = ACD:AddToBlizOptions("DBMEA_optionsHeader", "DBM Event Announcement")
@@ -372,49 +373,64 @@ end
 
 -------------------------------------------------------------------------------
 function ConfigDialog:refreshAvailabeLangs()
-    if not self.langsAreUpdated then
+    addon.MsgTools.TracePrintf("refreshAvailabeLangs")
+    if self.updateLangsRequired then
+        addon.MsgTools.TracePrintf("refreshAvailabeLangs true")
         local langs = addon.EventAnnouncement:getAvailableLangs()
         spellOptions.args.selectedLang.values = {}
         for i = 1, #langs do
             spellOptions.args.selectedLang.values[langs[i]] = langs[i]
         end
+
+        self.updateLangsRequired = false
+        self.updateInstanceIdsRequired = true
         LibStub("AceConfigRegistry-3.0"):NotifyChange("DBMEA_spellOptions")
-        self.langsAreUpdated = true
     end
 end
 
 function ConfigDialog:getSelectedLang(info)
+    addon.MsgTools.TracePrintf("getSelectedLang")
     self:refreshAvailabeLangs()
     return addon.Config:getSelectedLang()
 end
 
 function ConfigDialog:SetSelectedLang(info, value)
+    addon.MsgTools.TracePrintf("SetSelectedLang = %s", value)
     addon.Config:setSelectedLang(value)
-    self:refreshAvailabeIds()
-    self:refreshSpellList()
+    --self:refreshAvailabeIds()
+    --self:refreshSpellList()
+    self.updateInstanceIdsRequired = true
+    LibStub("AceConfigRegistry-3.0"):NotifyChange("DBMEA_spellOptions")
 end
 
 -------------------------------------------------------------------------------
 function ConfigDialog:refreshAvailabeIds()
-    local voicePackDB = addon.EventAnnouncement:getCurrentVoicePackDB()
-    spellOptions.args.instanceId.values = {}
-    local selectedInstanceSetted = false
-    for mapID, vp in pairs(voicePackDB) do
-        spellOptions.args.instanceId.values[tostring(vp:getInstanceId())] = vp:getInstanceName()
-        if not selectedInstanceSetted then
-            self.selectedInstanceID = tostring(vp:getInstanceId())
-            selectedInstanceSetted = true
+    if self.updateInstanceIdsRequired then
+        local voicePackDB = addon.EventAnnouncement:getCurrentVoicePackDB()
+        spellOptions.args.instanceId.values = {}
+        local selectedInstanceSetted = false
+        for mapID, vp in pairs(voicePackDB) do
+            spellOptions.args.instanceId.values[tostring(vp:getInstanceId())] = vp:getInstanceName()
+            if not selectedInstanceSetted then
+                self.selectedInstanceID = tostring(vp:getInstanceId())
+                selectedInstanceSetted = true
+            end
         end
+
+        self.updateInstanceIdsRequired = false
+        self:refreshSpellList()
+        LibStub("AceConfigRegistry-3.0"):NotifyChange("DBMEA_spellOptions")
     end
 end
 
 function ConfigDialog:getInstanceID(info)
+    addon.MsgTools.TracePrintf("getInstanceID")
     self:refreshAvailabeIds()
     return self.selectedInstanceID
 end
 
 function ConfigDialog:setInstanceID(info, value)
-    addon.MsgTools.DebugPrintf("setInstanceID = %s", value)
+    addon.MsgTools.TracePrintf("setInstanceID = %s", value)
     self.selectedInstanceID = value
     self:refreshSpellList()
 end

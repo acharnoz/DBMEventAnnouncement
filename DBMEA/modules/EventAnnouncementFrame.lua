@@ -153,6 +153,7 @@ function EventAnnouncementFrame:createDebugMenu(buttonSize, buttonBorderSpace, b
 
   self.testButton:SetScript('OnClick', function()
     if DBM then
+      addon.EventAnnouncement:loadRandomVoicePack()
       addon.DBMtestEnable = true
       DBM:DemoMode()
     end
