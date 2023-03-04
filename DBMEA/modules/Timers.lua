@@ -40,9 +40,9 @@ function Timer:eventAnnouncement(ea)
 
         if ea.newSpellID ~= nil then
             local spell = addon.LoadedVoicePacks:getSpell(ea.newSpellID)
-            addon.EventAnnouncementFrame:setEvent(spell.name, spell.icon)
+            addon.EventAnnouncementFrame:setEvent(spell.name, spell.icon, ea.newSpellID)
         else
-            addon.EventAnnouncementFrame:setEvent(ea.message, ea.icon)
+            addon.EventAnnouncementFrame:setEvent(ea.message, ea.icon, nil)
         end
 
         if addon.Config:getAllVoicesAreEnable() then

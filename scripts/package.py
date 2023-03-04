@@ -28,11 +28,11 @@ def replace_keys(key_to_var, filepath: Path):
     print("Text replaced")
 
 key_to_var = {}
-key_to_var["DBMEA_VERSION_KEY"] = "0.1.1"
+key_to_var["DBMEA_VERSION_KEY"] = "0.2.1"
 
 src1 = Path("G:\\Dev\\DBMEventAnnouncement\\DBMEA")
 src2 = Path("G:\\Dev\\DBMEventAnnouncement\\DBMEA-FR-Voicepacks")
-src2 = Path("G:\\Dev\\DBMEventAnnouncement\\DBMEA-EN-Voicepacks")
+src3 = Path("G:\\Dev\\DBMEventAnnouncement\\DBMEA-EN-Voicepacks")
 wow_addon_pkg = Path("G:\\Dev\\DBMEventAnnouncement\\package\\DBMEA")
 
 addons = [src1]

@@ -2,6 +2,17 @@ local addonName, addon = ...
 local EventAnnouncementFrame = addon:NewModule("EventAnnouncementFrame")
 
 -------------------------------------------------------------------------------
+local function createButton(frame, size, texturePath)
+  local button = CreateFrame("Button", nil, frame)
+  button:SetSize(size, size)
+  button.texture = button:CreateTexture(nil, "ARTWORK")
+  button.texture:SetSize(size, size)
+  button.texture:SetPoint("CENTER", 0, 0)
+  button.texture:SetTexture(texturePath)
+  return button
+end
+
+-------------------------------------------------------------------------------
 function EventAnnouncementFrame:createMainFrame(width, height)
   self.frame = CreateFrame("Frame", nil, UIParent, "BackdropTemplate")
   self.frame:SetBackdrop({
@@ -40,21 +51,36 @@ function EventAnnouncementFrame:createIcon(iconSize, borderSpace)
 end
 
 -------------------------------------------------------------------------------
+function EventAnnouncementFrame:updateOnOffButtonTexture()
+  if self.onOffButton.isOn then
+    self.onOffButton.texture:SetTexture("Interface\\Addons\\DBMEA\\textures\\icon-on")
+  else
+    self.onOffButton.texture:SetTexture("Interface\\Addons\\DBMEA\\textures\\icon-off")
+  end
+end
+-------------------------------------------------------------------------------
+function EventAnnouncementFrame:createOnOffButton(buttonSize, borderSpace)
+
+  self.onOffButton = createButton(self.frame, buttonSize, "Interface\\Addons\\DBMEA\\textures\\icon-on")
+  self.onOffButton.isOn = true
+  self.onOffButton:SetPoint("BOTTOMRIGHT", self.frame, "BOTTOMRIGHT", -2*borderSpace, 2*borderSpace - buttonSize * 1/3)
+  self:updateOnOffButtonTexture()
+
+  self.onOffButton:SetScript('OnClick', function()
+    self.onOffButton.isOn = not(self.onOffButton.isOn)
+    self:updateOnOffButtonTexture()
+    if self.currentSpellId ~= nil then
+      addon.Config:setSpellVoiceEnabled(self.currentSpellId, self.onOffButton.isOn)
+    end
+  end)
+
+end
+
+-------------------------------------------------------------------------------
 function EventAnnouncementFrame:createMessage(borderSpace)
   self.message = self.frame:CreateFontString(nil, "ARTWORK", "GameFontNormal")
   self.message:SetPoint("TOP", self.frame, "BOTTOM", 0, -borderSpace)
   self.message:SetJustifyH("CENTER")
-end
-
--------------------------------------------------------------------------------
-local function createButton(frame, size, texturePath)
-  local button = CreateFrame("Button", nil, frame)
-  button:SetSize(size, size)
-  button.texture = button:CreateTexture(nil, "ARTWORK")
-  button.texture:SetSize(size, size)
-  button.texture:SetPoint("CENTER", 0, 0)
-  button.texture:SetTexture(texturePath)
-  return button
 end
 
 -------------------------------------------------------------------------------
@@ -176,9 +202,26 @@ function EventAnnouncementFrame:hideDebugMenu()
 end
 
 -------------------------------------------------------------------------------
-function EventAnnouncementFrame:setEvent(msg, iconId)
+function EventAnnouncementFrame:refreshOnOffButton(spellId)
+  self.currentSpellId = spellId
+  if spellId == nil then
+    self.onOffButton:Hide()
+  elseif addon.Config:isSpellVoiceEnabled(spellId) then
+    self.onOffButton.isOn = true
+    self:updateOnOffButtonTexture()
+    self.onOffButton:Show()
+  else
+    self.onOffButton.isOn = false
+    self:updateOnOffButtonTexture()
+    self.onOffButton:Show()
+  end
+end
+
+-------------------------------------------------------------------------------
+function EventAnnouncementFrame:setEvent(msg, iconId, spellId)
   self.message:SetText(msg)
   self.icon:SetTexture(iconId)
+  self:refreshOnOffButton(spellId)
   self.frame:Show()
   self:scheduleClearEvent(addon.Config:getAnnounceTimeBeforeEvent())
 end
@@ -266,6 +309,7 @@ function EventAnnouncementFrame:init()
   self.frame = nil
   self.eventCleaningTimer = nil
   self.menuHideTimer = nil
+  self.currentSpellId = nil
 
   self.ICON_SIZE = 60
   self.BORDER_SPACE = 4
@@ -276,6 +320,7 @@ function EventAnnouncementFrame:init()
 
   self:createMainFrame(self.FRAME_WIDTH, self.FRAME_HEIGHT)
   self:createIcon(self.ICON_SIZE, self.BORDER_SPACE)
+  self:createOnOffButton(self.BUTTON_SIZE*2, self.BORDER_SPACE)
   self:createMessage(self.BORDER_SPACE)
   self:createMenu(self.BUTTON_SIZE, self.BUTTON_BORDER_SPACE, self.BORDER_SPACE)
   self:createDebugMenu(self.BUTTON_SIZE, self.BUTTON_BORDER_SPACE, self.BORDER_SPACE)
