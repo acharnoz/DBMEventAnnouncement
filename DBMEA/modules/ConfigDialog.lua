@@ -10,16 +10,16 @@ local optionsHeader = {
     handler = ConfigDialog,
     type = "group",
     args = {
-        desc1 = {
+        summary = {
             type = "description",
-            name = "DBM Timer Announcement used DBM addons to announce incoming spell X seconds before.",
+            name = "DBM Timer Announcement used DBM addons to announce the name of the incoming spell X seconds before.",
             fontSize = "medium",
         },
-        desc2 = {
+        author = {
             type = "description",
-            name = "This addon is developed by Milho (EU Dalaran).",
+            name = "This addon is developed by Milho (EU Dalaran) / Maseo (EU Cho'gall).",
         },
-        desc3 = {
+        version = {
             type = "description",
             name = "Version 0.1.0 alpha (development in progress)",
         },
@@ -225,6 +225,9 @@ function ConfigDialog:init()
     self.selectedInstanceID = nil
     self.updateLangsRequired = true
     self.updateInstanceIdsRequired = true
+
+    local version = GetAddOnMetadata("DBMEA", "Version")
+    optionsHeader.args.version.name = "Version " .. version
 
     AC:RegisterOptionsTable("DBMEA_optionsHeader", optionsHeader)
     self.optionsFrame = ACD:AddToBlizOptions("DBMEA_optionsHeader", "DBM Event Announcement")
