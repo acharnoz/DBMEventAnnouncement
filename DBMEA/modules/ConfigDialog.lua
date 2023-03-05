@@ -140,6 +140,20 @@ local options = {
                     set = "setFrameIsShown",
                     width = "double"
                 },
+                FrameVisibility = {
+                    order = 1.5,
+                    type = "select",
+                    values = {
+                        always = "Always",
+                        onlyforannouce = "Only for announcement",
+                        never = "Never"
+                    },
+                    name = "Select the frame visibility",
+                    desc = "Select when the frame is shown on screen",
+                    get = "getFrameVisibility",
+                    set = "setFrameVisibility",
+                    width = "double"
+                },
                 EAFrameSizePercent = {
                     order = 1.75,
                     type = "range",
@@ -334,6 +348,32 @@ end
 
 function ConfigDialog:setAnnounceCleaningTime(info, value)
     self.cfg.announceCleaningTime = tonumber(value)
+end
+
+-- FrameVisibility
+function ConfigDialog:getFrameVisibility(info)
+    local visibility = addon.Config:getFrameVisibility()
+    local value = "" 
+    if visibility == addon.Config.VISIBILITY.ALWAYS then
+        value = "always"
+    elseif visibility == addon.Config.VISIBILITY.NEVER then
+        value = "never"
+    else
+        value = "onlyforannouce"
+    end
+    return value
+end
+
+function ConfigDialog:setFrameVisibility(info, value)
+    local visibility = 0
+    if value == "always" then
+        visibility = 1
+    elseif value == "never" then
+        visibility = 3
+    else
+        visibility = 2
+    end
+    addon.Config:setFrameVisibility(visibility)
 end
 
 -- AnnounceAudioChannel

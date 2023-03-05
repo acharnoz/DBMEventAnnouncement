@@ -1,6 +1,8 @@
 local addonName, addon = ...
 local Config = addon:NewModule("Config")
 
+Config.VISIBILITY = {ALWAYS=1, ONLY_FOR_ANNOUNCEMENT=2, NEVER=3}
+
 function Config:getDefaultConfig()
     local defaults = {
         profile = {
@@ -16,6 +18,7 @@ function Config:getDefaultConfig()
             iconFrameTop = 0,
             iconFrameLeft = 0,
             frameIsShown = true,
+            frameVisibility = self.VISIBILITY.ALWAYS,
             selectedLang = "EN",
         },
     }
@@ -38,6 +41,15 @@ end
 
 function Config:setSelectedLang(val)
     self.db.profile.selectedLang = val
+end
+-------------------------------------------------------------------------------
+function Config:setFrameVisibility(visi)
+    self.db.profile.frameVisibility = visi
+end
+
+-------------------------------------------------------------------------------
+function Config:getFrameVisibility(visi)
+    return self.db.profile.frameVisibility
 end
 
 -------------------------------------------------------------------------------
