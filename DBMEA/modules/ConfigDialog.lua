@@ -131,17 +131,8 @@ local options = {
             name = "Icon options",
             type = "group",
             args = {
-                FrameIsShown = {
-                    order = 1,
-                    type = "toggle",
-                    name = "Show DBMEA Icon Frame",
-                    desc = "Show DBMEA icon frame constantly, otherwise show it only when dbm timers are active.",
-                    get = "getFrameIsShown",
-                    set = "setFrameIsShown",
-                    width = "double"
-                },
                 FrameVisibility = {
-                    order = 1.5,
+                    order = 1,
                     type = "select",
                     values = {
                         always = "Always",
@@ -374,6 +365,7 @@ function ConfigDialog:setFrameVisibility(info, value)
         visibility = 2
     end
     addon.Config:setFrameVisibility(visibility)
+    addon.EventAnnouncementFrame:updateFrameVisibilityConfig()
 end
 
 -- AnnounceAudioChannel
@@ -402,16 +394,6 @@ end
 
 function ConfigDialog:setAnnounceTimeBeforeEvent(info, value)
     self.cfg.announceTimeBeforeEvent = tonumber(value)
-end
-
--------------------------------------------------------------------------------
-function ConfigDialog:getFrameIsShown(info)
-    return self.cfg.frameIsShown
-end
-
-function ConfigDialog:setFrameIsShown(info, value)
-    self.cfg.frameIsShown = value
-    addon.EventAnnouncementFrame:updateFrameVisibility()
 end
 
 -------------------------------------------------------------------------------

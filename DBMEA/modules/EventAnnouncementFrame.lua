@@ -123,10 +123,10 @@ function EventAnnouncementFrame:createMenu(buttonSize, buttonBorderSpace, border
     InterfaceOptionsFrame_OpenToCategory("DBM Event Announcement")
   end)
 
-  self.hideButton:SetScript('OnClick', function()
-    addon.Config:setFrameIsShown(false)
-    addon.EventAnnouncementFrame:updateFrameVisibility()
-  end)
+  -- self.hideButton:SetScript('OnClick', function()
+  --   addon.Config:setFrameIsShown(false)
+  --   addon.EventAnnouncementFrame:updateFrameVisibility()
+  -- end)
 
   self.audioButton:SetPoint("TOPLEFT", self.frame, "TOPRIGHT", borderSpace, 0)
   self.lockButton:SetPoint("TOP", self.audioButton, "BOTTOM", 0, -buttonBorderSpace )
@@ -136,10 +136,24 @@ function EventAnnouncementFrame:createMenu(buttonSize, buttonBorderSpace, border
 end
 
 -------------------------------------------------------------------------------
-function EventAnnouncementFrame:updateFrameVisibility()
-  if addon.Config:getFrameIsShown() then
+function EventAnnouncementFrame:updateFrameVisibilityConfig()
+  if addon.Config:getFrameVisibility() == addon.Config.VISIBILITY.ALWAYS then
     self.frame:Show()
   else
+    self.frame:Hide()
+  end
+end
+
+-------------------------------------------------------------------------------
+function EventAnnouncementFrame:showMainFrame()
+  if (addon.Config:getFrameVisibility() == addon.Config.VISIBILITY.ALWAYS) or (addon.Config:getFrameVisibility() == addon.Config.VISIBILITY.ONLY_FOR_ANNOUNCEMENT) then
+    self.frame:Show()
+  end
+end
+
+-------------------------------------------------------------------------------
+function EventAnnouncementFrame:hideMainFrame()
+  if (addon.Config:getFrameVisibility() ~= addon.Config.VISIBILITY.ALWAYS) then
     self.frame:Hide()
   end
 end
@@ -202,7 +216,7 @@ function EventAnnouncementFrame:hideDebugMenu()
 end
 
 -------------------------------------------------------------------------------
-function EventAnnouncementFrame:refreshOnOffButton(spellId)
+function EventAnnouncementFrame:showOnOffButton(spellId)
   self.currentSpellId = spellId
   if spellId == nil then
     self.onOffButton:Hide()
@@ -219,18 +233,20 @@ end
 
 -------------------------------------------------------------------------------
 function EventAnnouncementFrame:setEvent(msg, iconId, spellId)
+  self:showMainFrame()
   self.message:SetText(msg)
   self.icon:SetTexture(iconId)
-  self:refreshOnOffButton(spellId)
-  self.frame:Show()
+  self.icon:Show()
+  self:showOnOffButton(spellId)
   self:scheduleClearEvent(addon.Config:getAnnounceTimeBeforeEvent())
 end
 
 -------------------------------------------------------------------------------
 function EventAnnouncementFrame:clearEvent()
+  self:hideMainFrame()
   self.message:SetText("")
-  self.icon:SetTexture("Interface\\Addons\\DBMEA\\textures\\icon-DBMEA")
-  self.frame:Hide()
+  self.icon:Hide()
+  self.onOffButton:Hide()
 end
 
 -------------------------------------------------------------------------------
@@ -333,9 +349,8 @@ function EventAnnouncementFrame:init()
   self.frame:SetScript("OnLeave", function() addon.EventAnnouncementFrame:OnLeave() end)
 
   self:clear()
-  self.frame:Show()
   self:hideMenu()
   self:hideDebugMenu()
   self:updateScale()
-  self:updateFrameVisibility()
+  self:updateFrameVisibilityConfig()
 end

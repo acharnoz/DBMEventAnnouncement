@@ -14,7 +14,6 @@ function Timer:startTimer()
     addon.MsgTools.DebugPrintf("Timer:startTimer()")
     if (Timer.checkBarTimer == nil) then
         Timer.checkBarTimer = addon:ScheduleRepeatingTimer(onUpdateTimerCallback, Timer.checkBarTimerDelay);
-        --addon.EventAnnouncementFrame.frame:Show()
         self.timeBeforeEA = addon.Config:getAnnounceTimeBeforeEvent()
         self.audioChannel = addon.Config:getAnnounceAudioChannel()
     end
