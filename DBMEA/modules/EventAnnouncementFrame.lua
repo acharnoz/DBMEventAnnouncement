@@ -58,6 +58,7 @@ function EventAnnouncementFrame:updateOnOffButtonTexture()
     self.onOffButton.texture:SetTexture("Interface\\Addons\\DBMEA\\textures\\icon-off")
   end
 end
+
 -------------------------------------------------------------------------------
 function EventAnnouncementFrame:createOnOffButton(buttonSize, borderSpace)
 
@@ -84,6 +85,15 @@ function EventAnnouncementFrame:createMessage(borderSpace)
 end
 
 -------------------------------------------------------------------------------
+function EventAnnouncementFrame:updateHideButtonTexture()
+  if addon.Config:getFrameVisibility() ~= addon.Config.VISIBILITY.ALWAYS then
+    self.hideButton.texture:SetTexture("Interface\\Addons\\DBMEA\\textures\\icon-hide-64px")
+  else
+    self.hideButton.texture:SetTexture("Interface\\Addons\\DBMEA\\textures\\icon-show-64px")
+  end
+end
+
+-------------------------------------------------------------------------------
 function EventAnnouncementFrame:createMenu(buttonSize, buttonBorderSpace, borderSpace)
   
   self.lockButton = createButton(self.frame, buttonSize, "Interface\\Addons\\DBMEA\\textures\\icon-unlock-32px")
@@ -93,7 +103,10 @@ function EventAnnouncementFrame:createMenu(buttonSize, buttonBorderSpace, border
   else
     self.audioButton = createButton(self.frame, buttonSize, "Interface\\Addons\\DBMEA\\textures\\icon-no-audio-32px")
   end
+  
   self.hideButton = createButton(self.frame, buttonSize, "Interface\\Addons\\DBMEA\\textures\\icon-close-32px")
+  self:updateHideButtonTexture()
+
 
   self.lockButton.isUnlock = true
   self.lockButton:SetScript('OnClick', function()
@@ -123,10 +136,14 @@ function EventAnnouncementFrame:createMenu(buttonSize, buttonBorderSpace, border
     InterfaceOptionsFrame_OpenToCategory("DBM Event Announcement")
   end)
 
-  -- self.hideButton:SetScript('OnClick', function()
-  --   addon.Config:setFrameIsShown(false)
-  --   addon.EventAnnouncementFrame:updateFrameVisibility()
-  -- end)
+  self.hideButton:SetScript('OnClick', function()
+    if addon.Config:getFrameVisibility() == addon.Config.VISIBILITY.ALWAYS then
+      addon.Config:setFrameVisibility(addon.Config.VISIBILITY.ONLY_FOR_ANNOUNCEMENT)
+    elseif addon.Config:getFrameVisibility() == addon.Config.VISIBILITY.ONLY_FOR_ANNOUNCEMENT then
+      addon.Config:setFrameVisibility(addon.Config.VISIBILITY.ALWAYS)
+    end
+    self:updateFrameVisibilityConfig()
+  end)
 
   self.audioButton:SetPoint("TOPLEFT", self.frame, "TOPRIGHT", borderSpace, 0)
   self.lockButton:SetPoint("TOP", self.audioButton, "BOTTOM", 0, -buttonBorderSpace )
@@ -142,6 +159,7 @@ function EventAnnouncementFrame:updateFrameVisibilityConfig()
   else
     self.frame:Hide()
   end
+  self:updateHideButtonTexture()
 end
 
 -------------------------------------------------------------------------------
