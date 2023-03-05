@@ -371,4 +371,10 @@ function EventAnnouncementFrame:init()
   self:hideDebugMenu()
   self:updateScale()
   self:updateFrameVisibilityConfig()
+
+  if addon.Config:getFrameVisibility() == addon.Config.VISIBILITY.ALWAYS then
+    self.icon:SetTexture("Interface\\Addons\\DBMEA\\textures\\icon-DBMEA")
+    self.icon:Show()
+  end
+
 end
