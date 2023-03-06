@@ -1,11 +1,7 @@
----------------
---  Globals  --
----------------
 local addonName, addon = ...
-local DBMEA = LibStub("AceAddon-3.0"):GetAddon("DBMEA")
-local DBMEAS = DBMEA.Structures
---.EventHandler = {}
+local DBMEventHandler = addon:NewModule("DBMEventHandler")
 
+local DBMEAS = addon.Structures
 
 local function DBMEventCallback(event, ...)
   addon.MsgTools.TracePrintf("DBMEventCallback")
@@ -175,7 +171,7 @@ local function DBMEventCallback(event, ...)
 
 end
 
-function DBMEA:RegisterDBMCallback(event)
+function DBMEventHandler:RegisterDBMCallback(event)
   addon.MsgTools.TracePrintf("func DBMEA:RegisterDBMCallback(event)")
   --if registeredDBMEvents[event] then
   --  return
@@ -189,7 +185,7 @@ function DBMEA:RegisterDBMCallback(event)
 end
 
 -- -- -- manage events
-function DBMEA:HandleEvents()
+function DBMEventHandler:HandleEvents()
   addon.MsgTools.TracePrintf("DBMEA:HandleEvents()")
 
   self:RegisterDBMCallback("DBM_TimerStart")

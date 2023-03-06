@@ -24,9 +24,7 @@ function addon:OnInitialize()
   addon.EventAnnouncementFrame:init()
   addon.LoadedVoicePacks:init()
 
-
-  self:HandleEvents()
-  addon:RegisterEvent("PLAYER_ENTERING_WORLD")
+  self:registerEvents()
 
   addon.MsgTools.TracePrintf("DBMEA:OnInitialize() End")
 end
@@ -63,4 +61,13 @@ function addon:addEAVoicePack(vp)
   addon.MsgTools.TracePrintf("DBMEA:addEAVoicePack(instanceId=%s, MapId=%s)", vp:getInstanceId(), vp:getMapId())
   addon.EventAnnouncement:registerVoicePack(vp)
   addon.Config:registerVoicePack(vp)
+end
+
+function addon:registerEvents()
+  addon:RegisterEvent("PLAYER_ENTERING_WORLD")
+  if DBM then
+    addon.DBMEventHandler:HandleEvents()
+  else
+    addon.MsgTools.ErrorPrintf("The DBM addon is not enable")
+  end
 end
