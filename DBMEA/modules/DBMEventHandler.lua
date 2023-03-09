@@ -91,40 +91,35 @@ local function DBMEventCallback(event, ...)
     if DBMEAS.bars[id] ~= nil then
       DBMEAS.bars[id] = nil -- remove id from bars
     else
-      addon.MsgTools.ErrorPrintf("Event %s with id=%s not found in table.", event, id)
+      addon.MsgTools.DebugPrintf("Event %s with id=%s not found in table.", event, id)
     end
 
 
   elseif event == "DBM_TimerPause" then
     local id = ...
-    addon.MsgTools.WarningPrintf("Event %s not managed", event)
-    addon.MsgTools.WarningPrintf("Event %s not managed: id=%s", event, id)
-
+    addon.MsgTools.DebugPrintf("Event %s: id=%s", event, id)
+    
+    local bar = DBMEAS.bars[id]
+    if bar and not bar.paused then
+      bar.paused = true
+      bar.remaining = bar.expirationTime - GetTime()
+    end
 
   elseif event == "DBM_TimerResume" then
     local id = ...
-    addon.MsgTools.WarningPrintf("Event %s not managed", event)
-    addon.MsgTools.WarningPrintf("Event %s not managed: id=%s", event, id)
-    --local bar = DBMEAS.bars[id]
-    -- if bar then
-    --   bar.paused = nil
-    --   bar.expirationTime = GetTime() + (bar.remaining or 0)
-    --   bar.remaining = nil
-    --   WeakAuras.ScanEvents("DBM_TimerResume", id)
-    --   if nextExpire == nil then
-    --     recheckTimer = timer:ScheduleTimerFixed(dbmRecheckTimers, bar.expirationTime - GetTime())
-    --     nextExpire = bar.expirationTime
-    --   elseif bar.expirationTime < nextExpire then
-    --     timer:CancelTimer(recheckTimer)
-    --     recheckTimer = timer:ScheduleTimerFixed(dbmRecheckTimers, bar.expirationTime - GetTime())
-    --     nextExpire = bar.expirationTime
-    --   end
-    -- end
+    addon.MsgTools.DebugPrintf("Event %s: id=%s", event, id)
+    
+    local bar = DBMEAS.bars[id]
+    if bar then
+      bar.paused = nil
+      bar.expirationTime = GetTime() + (bar.remaining or 0)
+      bar.remaining = nil
+    end
 
   elseif event == "DBM_SetStage" then
     local mod, modId, stage, encounterId, stageTotal = ...
-    addon.MsgTools.WarningPrintf("Event %s not managed", event)
-    addon.MsgTools.WarningPrintf("Event %s not managed: modId=%s, stage=%s, encounterId=%s, stageTotal=%s", event,
+    addon.MsgTools.DebugPrintf("Event %s not managed", event)
+    addon.MsgTools.DebugPrintf("Event %s not managed: modId=%s, stage=%s, encounterId=%s, stageTotal=%s", event,
       tostring(modId), tostring(stage), tostring(encounterId), tostring(stageTotal))
     -- currentStage = stage
     -- currentStageTotal = stageTotal

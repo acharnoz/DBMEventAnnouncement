@@ -67,6 +67,8 @@ function addon:registerEvents()
   addon:RegisterEvent("PLAYER_ENTERING_WORLD")
   if DBM then
     addon.DBMEventHandler:HandleEvents()
+  elseif BigWigsLoader then
+    addon.BigWigsEventHandler:HandleEvents()
   else
     addon.MsgTools.ErrorPrintf("The DBM addon is not enable")
   end

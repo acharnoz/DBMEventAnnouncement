@@ -215,6 +215,14 @@ function EventAnnouncementFrame:createDebugMenu(buttonSize, buttonBorderSpace, b
       addon.DBMtestEnable = true
       DBM:DemoMode()
     end
+
+    if BigWigs then
+      addon.EventAnnouncement:loadRandomVoicePack()
+      addon.DBMtestEnable = true
+      for i = 1, 5, 1 do
+        BigWigs:Test()
+      end
+    end
   end)
 
 end
