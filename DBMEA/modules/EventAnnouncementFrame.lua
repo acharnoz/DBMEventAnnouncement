@@ -242,11 +242,10 @@ function EventAnnouncementFrame:hideDebugMenu()
 end
 
 -------------------------------------------------------------------------------
-function EventAnnouncementFrame:showOnOffButton(spellId)
-  self.currentSpellId = spellId
-  if spellId == nil then
+function EventAnnouncementFrame:showOnOffButton()
+  if self.currentSpellId == nil then
     self.onOffButton:Hide()
-  elseif addon.Config:isSpellVoiceEnabled(spellId) then
+  elseif addon.Config:isSpellVoiceEnabled(self.currentSpellId) then
     self.onOffButton.isOn = true
     self:updateOnOffButtonTexture()
     self.onOffButton:Show()
@@ -263,12 +262,14 @@ function EventAnnouncementFrame:setEvent(msg, iconId, spellId)
   self.message:SetText(msg)
   self.icon:SetTexture(iconId)
   self.icon:Show()
-  self:showOnOffButton(spellId)
+  self.currentSpellId = spellId
+  self:showOnOffButton()
   self:scheduleClearEvent(addon.Config:getAnnounceTimeBeforeEvent())
 end
 
 -------------------------------------------------------------------------------
 function EventAnnouncementFrame:clearEvent()
+  self.currentSpellId = nil
   self:hideMainFrame()
   self.message:SetText("")
   self.icon:Hide()
@@ -329,11 +330,17 @@ function EventAnnouncementFrame:OnEnter()
   addon.MsgTools.DebugPrintf("EventAnnouncementFrame:OnEnter()")
   self:showMenu()
   self:showDebugMenu()
+  if self.currentSpellId ~= nil then
+    GameTooltip:SetOwner(self.frame, "ANCHOR_TOPLEFT", 0, self.BORDER_SPACE)
+    GameTooltip:SetHyperlink(GetSpellLink(self.currentSpellId))
+    GameTooltip:Show()
+  end
 end
 
 -------------------------------------------------------------------------------
 function EventAnnouncementFrame:OnLeave()
   addon.MsgTools.DebugPrintf("EventAnnouncementFrame:OnLeave()")
+  GameTooltip:Hide()
   self:scheduleHideMenu(3)
 end
 
@@ -360,7 +367,7 @@ function EventAnnouncementFrame:init()
   self.FRAME_HEIGHT = self.ICON_SIZE + 2 * self.BORDER_SPACE
   self.FRAME_WIDTH = self.FRAME_HEIGHT
 
-  self:createMainFrame(self.FRAME_WIDTH, self.FRAME_HEIGHT)
+  self:createMainFrame(self.FRAME_WIDTH, self.FRAME_HEIGHT) 
   self:createIcon(self.ICON_SIZE, self.BORDER_SPACE)
   self:createOnOffButton(self.BUTTON_SIZE*2, self.BORDER_SPACE)
   self:createMessage(self.BORDER_SPACE)
