@@ -28,7 +28,7 @@ def replace_keys(key_to_var, filepath: Path):
     print("Text replaced")
 
 key_to_var = {}
-key_to_var["DBMEA_VERSION_KEY"] = "0.2.2"
+key_to_var["DBMEA_VERSION_KEY"] = "0.3.0"
 
 src1 = Path("G:\\Dev\\DBMEventAnnouncement\\DBMEA")
 src2 = Path("G:\\Dev\\DBMEventAnnouncement\\DBMEA-FR-Voicepacks")

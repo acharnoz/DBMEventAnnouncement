@@ -13,7 +13,7 @@ function Config:getDefaultConfig()
             eventCleaningTime = 3,
             announceCleaningTime = 3,
             debugModeIsEnabled = false,
-            logLevel = 2,
+            logLevel = 0,
             spellVoiceEnabled = {},
             iconFrameTop = 0,
             iconFrameLeft = 0,
@@ -94,8 +94,8 @@ function Config:getConfig()
 end
 
 -------------------------------------------------------------------------------
-function Config:setLogLevel(enabled)
-    self.db.profile.logLevel = enabled
+function Config:setLogLevel(level)
+    self.db.profile.logLevel = level
 end
 
 function Config:getLogLevel()

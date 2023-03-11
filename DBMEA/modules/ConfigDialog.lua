@@ -40,8 +40,8 @@ local options = {
                 debugModeIsEnabled = {
                     order = 1,
                     type = "toggle",
-                    name = "Debug sound",
-                    desc = "Enable/desable dummy sound when a spell is not found in the addon database.",
+                    name = "Enable/desable debug mode",
+                    desc = "Enable/desable debug mode (new buttons, log level available, dummy sound etc).",
                     get = "getDebugModeIsEnabled",
                     set = "setDebugModeIsEnabled",
                     width = "double"
@@ -65,6 +65,7 @@ local options = {
                     },
                     name = "Debug log level",
                     desc = "Select the verbosity of debug log",
+                    disabled = "isLogLevelDisabled",
                     get = "getLogLevel",
                     set = "setLogLevel",
                     width = "normal"
@@ -480,6 +481,13 @@ end
 
 function ConfigDialog:setDebugModeIsEnabled(info, value)
     addon.Config:setDebugModeIsEnabled(value)
+    if not (addon.Config:getDebugModeIsEnabled()) then
+        addon.Config:setLogLevel(0) -- NoLog
+    end
+end
+
+function ConfigDialog:isLogLevelDisabled()
+    return not(addon.Config:getDebugModeIsEnabled())
 end
 
 function ConfigDialog:getLogLevel(info)
