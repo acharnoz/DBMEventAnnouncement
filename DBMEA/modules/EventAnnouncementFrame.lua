@@ -42,12 +42,6 @@ function EventAnnouncementFrame:createIcon(iconSize, borderSpace)
   self.icon:SetTexture("Interface\\Addons\\DBMEA\\textures\\icon-DBMEA")
   self.icon:SetTexCoord(0.1, 0.9, 0.1, 0.9)
   self.icon:SetAlpha(0.75)
-
-  -- mainFrame.texture:SetAllPoints(mainFrame)
-  -- mainFrame.alertIcon = mainFrame:CreateTexture(nil, "ARTWORK")
-  -- mainFrame.alertIcon:SetSize(iconSize, iconSize)
-  -- mainFrame.alertIcon:SetPoint("CENTER")
-  -- mainFrame.alertIcon:SetTexture("interface/icons/inv_mushroom_11")
 end
 
 -------------------------------------------------------------------------------
