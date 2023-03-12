@@ -9,14 +9,24 @@ This addon is created and matained by Milho/Maseo (Dalaran EU Realm). Artificial
 
 # Revision history
 
+## Version 0.3.1
+- Add a spell tooltip (for identified spells) when the cursor enter on the DBMEA frame
+- Add buttons in spell config menu to enable/desable all sounds of the selected instance
+- Fix Ace3 library version
+- Fix Bigwigs core loaded too soon
+
+## Version 0.3.0
+- Experimental support of BigWigs events
+- Better management of debug mode
+- Change default log level
+- Change log level of few messages
+
+## Version 0.2.2
+- Improve main frame visibility management. Now, three options: Always visible, Only visible during announcement and Never visible (for just have voice without frame).
+
+
+
 # Backlog
-Bug(s)
-- Fix refresh icon frame on profile reset
-- Fix spell only defineds with DMB message and/or DMB icon
-
-Focus feature(s)
-- load addon with custom icon
-
 Other feature(s)
 - show on icon frame few spells informations
 - manage button to open journal instance (encoutner ? spell ?)

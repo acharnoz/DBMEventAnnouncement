@@ -202,7 +202,7 @@ local spellOptions = {
             name = "Current voicepacks lang",
             desc = "Select the lang of voicepacks",
             get = "getSelectedLang",
-            set = "SetSelectedLang",
+            set = "setSelectedLang",
             width = "double"
         },
         instanceId = {
@@ -216,9 +216,31 @@ local spellOptions = {
             set = "setInstanceID",
             width = "double"
         },
+        desc2 = {
+            order = 2.5,
+            type = "description",
+            name = " ",
+            width = "normal"
+        },
+        enableAllSound = {
+            order = 3,
+            type = "execute",
+            name = "Enable all instance voices",
+            desc = "Enable all instance voices",
+            func = "enableAllVoices",
+            width = "normal"
+        },
+        disableAllSound = {
+            order = 4,
+            type = "execute",
+            name = "Disable all instance voices",
+            desc = "Disable all instance voices",
+            func = "disableAllVoices",
+            width = "normal"
+        },
         spellList = {
             name = "Instance spells",
-            order = 1,
+            order = 5,
             type = "group",
             args = {}
         }
@@ -420,8 +442,8 @@ function ConfigDialog:getSelectedLang(info)
     return addon.Config:getSelectedLang()
 end
 
-function ConfigDialog:SetSelectedLang(info, value)
-    addon.MsgTools.TracePrintf("SetSelectedLang = %s", value)
+function ConfigDialog:setSelectedLang(info, value)
+    addon.MsgTools.TracePrintf("setSelectedLang = %s", value)
     addon.Config:setSelectedLang(value)
     --self:refreshAvailabeIds()
     --self:refreshSpellList()
@@ -529,4 +551,24 @@ end
 
 function ConfigDialog:printRegisterSpell(info)
     addon.EventAnnouncement:printRegisterSpell()
+end
+
+function ConfigDialog:enableAllVoices(...)
+    if self.selectedInstanceID ~= nil then
+        -- Fill the map with the voicepack information
+        local instanceName, description, bgImage, buttonImage1, loreImage, buttonImage2, dungeonAreaMapID, link, shouldDisplayDifficulty, mapID =
+        EJ_GetInstanceInfo(self.selectedInstanceID)
+        local voicepack = addon.EventAnnouncement:getCurrentVoicePack(mapID)
+        addon.Config:setSpellVoicePackEnabled(voicepack, true)
+    end
+end
+
+function ConfigDialog:disableAllVoices(...)
+    if self.selectedInstanceID ~= nil then
+        -- Fill the map with the voicepack information
+        local instanceName, description, bgImage, buttonImage1, loreImage, buttonImage2, dungeonAreaMapID, link, shouldDisplayDifficulty, mapID =
+        EJ_GetInstanceInfo(self.selectedInstanceID)
+        local voicepack = addon.EventAnnouncement:getCurrentVoicePack(mapID)
+        addon.Config:setSpellVoicePackEnabled(voicepack, false)
+    end
 end

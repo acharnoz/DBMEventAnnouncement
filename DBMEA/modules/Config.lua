@@ -159,6 +159,15 @@ function Config:setSpellVoiceEnabled(spellId, enabled)
 end
 
 -------------------------------------------------------------------------------
+function Config:setSpellVoicePackEnabled(voicepack, enabled)
+    addon.MsgTools.TracePrintf("Config:setSpellVoicePackEnabled(voicepack=%d,enabled=%s)", voicepack:getInstanceName(), tostring(enabled))
+    local spellId2SoundPath = voicepack:getSpellId2SoundPath()
+    for spellId, path in pairs(spellId2SoundPath) do
+        self.db.profile.spellVoiceEnabled[spellId] = enabled
+    end 
+end
+
+-------------------------------------------------------------------------------
 function Config:resetSpellVoiceEnabled()
     for instanceID, vp in pairs(addon.EventAnnouncement:getCurrentVoicePackDB()) do
         self:registerVoicePack(vp)
