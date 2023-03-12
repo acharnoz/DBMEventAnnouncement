@@ -12,6 +12,7 @@ This addon is created and matained by Milho/Maseo (Dalaran EU Realm). Artificial
 ## Version 0.3.1
 - Add a spell tooltip (for identified spells) when the cursor enter on the DBMEA frame
 - Add buttons in spell config menu to enable/desable all sounds of the selected instance
+- Add a spell description in the spell config menu
 - Fix Ace3 library version
 - Fix Bigwigs core loaded too soon
 

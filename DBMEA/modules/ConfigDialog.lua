@@ -296,6 +296,7 @@ function ConfigDialog:refreshSpellList()
         }
         spellOptions.args.spellList.args["desc"] = desc1
     end
+    LibStub("AceConfigRegistry-3.0"):NotifyChange("DBMEA_spellOptions")
 end
 
 -- function ConfigDialog:addSpellListFromVoicePack(voicepack)
@@ -344,6 +345,25 @@ function ConfigDialog:addSpellList(order, spellId)
         width = "double"
     }
     spellOptions.args.spellList.args[key] = val
+
+    -- description
+    local key_desc = string.format("%s_desc", key)
+    local orderdesc = order + 0.5
+    local desc = {
+        order = orderdesc,
+        type = "description",
+        name = "",
+        width = "double"
+    }
+    spellOptions.args.spellList.args[key_desc] = desc
+
+    --self.spellDescription = {}
+    local spell = Spell:CreateFromSpellID(spellId);
+    spell:ContinueOnSpellLoad(function()
+        spellOptions.args.spellList.args[key_desc].name = GetSpellDescription(spell:GetSpellID());
+    end);
+    --self.spellDescription[spellID] = spell
+
 end
 
 -- EventCleaningTime
