@@ -1,9 +1,9 @@
 ## Interface: 100005
-## Title:|cffffe00a<|r|cff66c0c0DBMEA|r|cffffe00a>|r |cffffd200DBM Event Announcement|r
-## Version: DBMEA_VERSION_KEY
-## Notes: This addon is a mod to Deadly Boss Mods (DBM) use to announce X seconds before the end of a timer the incoming spell.
+## Title:|cffffe00a<|r|cff66c0c0BAA|r|cffffe00a>|r |cffffd200Boss Ability Announcement|r
+## Version: BAA_VERSION_KEY
+## Notes: This addon is a mod to DBM or BigWigs use to announce X seconds before the end of a timer the incoming spell.
 ## Author: Milho
-## SavedVariables: DBMEADB
+## SavedVariables: BAADB
 ## OptionalDependencies: _DebugLog, DBM-Core, BigWigs
 
 Libs\LibStub\LibStub.lua
@@ -23,7 +23,7 @@ Libs\AceConfig-3.0\AceConfig-3.0.xml
 #Libs\AceTab-3.0\AceTab-3.0.xml
 #Libs\AceSerializer-3.0\AceSerializer-3.0.xml
 
-DBMEA.lua
+BAA.lua
 Structures.lua
 
 modules/SpellMod.lua

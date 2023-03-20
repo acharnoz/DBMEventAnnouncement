@@ -6,13 +6,13 @@ local ACD = LibStub("AceConfigDialog-3.0")
 
 
 local optionsHeader = {
-    name = "DBM Event Annoucement",
+    name = "Boss Ability Announcement",
     handler = ConfigDialog,
     type = "group",
     args = {
         summary = {
             type = "description",
-            name = "DBM Timer Announcement used DBM addons to announce the name of the incoming spell X seconds before.",
+            name = "Boss Ability Announcement used DBM or BigWigs addons to announce the name of the incoming spell X seconds before.",
             fontSize = "medium",
         },
         author = {
@@ -254,21 +254,21 @@ function ConfigDialog:init()
     self.updateLangsRequired = true
     self.updateInstanceIdsRequired = true
 
-    local version = GetAddOnMetadata("DBMEA", "Version")
+    local version = GetAddOnMetadata("BAA", "Version")
     optionsHeader.args.version.name = "Version " .. version
 
-    AC:RegisterOptionsTable("DBMEA_optionsHeader", optionsHeader)
-    self.optionsFrame = ACD:AddToBlizOptions("DBMEA_optionsHeader", "DBM Event Announcement")
+    AC:RegisterOptionsTable("BAA_optionsHeader", optionsHeader)
+    self.optionsFrame = ACD:AddToBlizOptions("BAA_optionsHeader", "Boss Ability Announcement")
 
-    AC:RegisterOptionsTable("DBMEA_generalOptions", options)
-    self.generalOptionsFrame = ACD:AddToBlizOptions("DBMEA_generalOptions", "General options", "DBM Event Announcement")
+    AC:RegisterOptionsTable("BAA_generalOptions", options)
+    self.generalOptionsFrame = ACD:AddToBlizOptions("BAA_generalOptions", "General options", "Boss Ability Announcement")
 
-    AC:RegisterOptionsTable("DBMEA_spellOptions", spellOptions)
-    self.generalOptionsFrame = ACD:AddToBlizOptions("DBMEA_spellOptions", "Spell options", "DBM Event Announcement")
+    AC:RegisterOptionsTable("BAA_spellOptions", spellOptions)
+    self.generalOptionsFrame = ACD:AddToBlizOptions("BAA_spellOptions", "Spell options", "Boss Ability Announcement")
 
     local profiles = LibStub("AceDBOptions-3.0"):GetOptionsTable(addon.Config.db)
-    AC:RegisterOptionsTable("DBMEA_Profiles", profiles)
-    self.profileFrame = ACD:AddToBlizOptions("DBMEA_Profiles", "Profiles", "DBM Event Announcement")
+    AC:RegisterOptionsTable("BAA_Profiles", profiles)
+    self.profileFrame = ACD:AddToBlizOptions("BAA_Profiles", "Profiles", "Boss Ability Announcement")
 
     addon.Config.db.RegisterCallback(self, "OnProfileReset", "OnProfileEnable")
 end
@@ -296,7 +296,7 @@ function ConfigDialog:refreshSpellList()
         }
         spellOptions.args.spellList.args["desc"] = desc1
     end
-    LibStub("AceConfigRegistry-3.0"):NotifyChange("DBMEA_spellOptions")
+    LibStub("AceConfigRegistry-3.0"):NotifyChange("BAA_spellOptions")
 end
 
 -- function ConfigDialog:addSpellListFromVoicePack(voicepack)
@@ -452,7 +452,7 @@ function ConfigDialog:refreshAvailabeLangs()
 
         self.updateLangsRequired = false
         self.updateInstanceIdsRequired = true
-        LibStub("AceConfigRegistry-3.0"):NotifyChange("DBMEA_spellOptions")
+        LibStub("AceConfigRegistry-3.0"):NotifyChange("BAA_spellOptions")
     end
 end
 
@@ -468,7 +468,7 @@ function ConfigDialog:setSelectedLang(info, value)
     --self:refreshAvailabeIds()
     --self:refreshSpellList()
     self.updateInstanceIdsRequired = true
-    LibStub("AceConfigRegistry-3.0"):NotifyChange("DBMEA_spellOptions")
+    LibStub("AceConfigRegistry-3.0"):NotifyChange("BAA_spellOptions")
 end
 
 -------------------------------------------------------------------------------
@@ -487,7 +487,7 @@ function ConfigDialog:refreshAvailabeIds()
 
         self.updateInstanceIdsRequired = false
         self:refreshSpellList()
-        LibStub("AceConfigRegistry-3.0"):NotifyChange("DBMEA_spellOptions")
+        LibStub("AceConfigRegistry-3.0"):NotifyChange("BAA_spellOptions")
     end
 end
 

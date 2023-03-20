@@ -10,8 +10,8 @@ function addon:OnInitialize()
   end
 
   -- Called when the addon is loaded
-  addon.MsgTools.TracePrintf("DBMEA:OnInitialize()")
-  self:Print("DBM Timer Announcement 0.1.0 by Milho")
+  addon.MsgTools.TracePrintf("BAA:OnInitialize()")
+  self:Print("Boss Ability Announcement by Milho")
 
   -- Load configuration
   addon.Config:init()
@@ -26,7 +26,7 @@ function addon:OnInitialize()
 
   self:registerEvents()
 
-  addon.MsgTools.TracePrintf("DBMEA:OnInitialize() End")
+  addon.MsgTools.TracePrintf("BAA:OnInitialize() End")
 end
 
 function addon:OnEnable()
@@ -48,7 +48,7 @@ function addon:PLAYER_ENTERING_WORLD()
 end
 
 function addon:createEAVoicePack(voicePackName, expansionId, instanceId, lang)
-  addon.MsgTools.TracePrintf("DBMEA:createEAVoicePack(voicePackName=%s, instanceId=%s, lang=%s)", voicePackName,
+  addon.MsgTools.TracePrintf("BAA:createEAVoicePack(voicePackName=%s, instanceId=%s, lang=%s)", voicePackName,
     instanceId, lang)
   local vp = addon.EventAnnouncementVoicePack:createEAVoicePack()
   vp:setVoicePackName(voicePackName)
@@ -58,7 +58,7 @@ function addon:createEAVoicePack(voicePackName, expansionId, instanceId, lang)
 end
 
 function addon:addEAVoicePack(vp)
-  addon.MsgTools.TracePrintf("DBMEA:addEAVoicePack(instanceId=%s, MapId=%s)", vp:getInstanceId(), vp:getMapId())
+  addon.MsgTools.TracePrintf("BAA:addEAVoicePack(instanceId=%s, MapId=%s)", vp:getInstanceId(), vp:getMapId())
   addon.EventAnnouncement:registerVoicePack(vp)
   addon.Config:registerVoicePack(vp)
 end

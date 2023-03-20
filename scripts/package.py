@@ -28,12 +28,12 @@ def replace_keys(key_to_var, filepath: Path):
     print("Text replaced")
 
 key_to_var = {}
-key_to_var["DBMEA_VERSION_KEY"] = "0.3.1"
+key_to_var["BAA_VERSION_KEY"] = "0.3.2"
 
-src1 = Path("G:\\Dev\\DBMEventAnnouncement\\DBMEA")
-src2 = Path("G:\\Dev\\DBMEventAnnouncement\\DBMEA-FR-Voicepacks")
-src3 = Path("G:\\Dev\\DBMEventAnnouncement\\DBMEA-EN-Voicepacks")
-wow_addon_pkg = Path("G:\\Dev\\DBMEventAnnouncement\\package\\DBMEA")
+src1 = Path("G:\\Dev\\DBMEventAnnouncement\\BAA")
+src2 = Path("G:\\Dev\\DBMEventAnnouncement\\BAA-FR-Voicepacks")
+src3 = Path("G:\\Dev\\DBMEventAnnouncement\\BAA-EN-Voicepacks")
+wow_addon_pkg = Path("G:\\Dev\\DBMEventAnnouncement\\package\\BAA")
 
 addons = [src1]
 
@@ -50,8 +50,8 @@ for p in addons:
         shutil.rmtree(dest)
     shutil.copytree(p, dest)
 
-output_DBMEA_toc = Path(wow_addon_pkg / "DBMEA" / "DBMEA.toc")
-replace_keys(key_to_var, output_DBMEA_toc)
+output_BAA_toc = Path(wow_addon_pkg / "BAA" / "BAA.toc")
+replace_keys(key_to_var, output_BAA_toc)
 
-output_filename = Path(wow_addon_pkg.parent / (wow_addon_pkg.name + "_v" + key_to_var["DBMEA_VERSION_KEY"]) )
+output_filename = Path(wow_addon_pkg.parent / (wow_addon_pkg.name + "_v" + key_to_var["BAA_VERSION_KEY"]) )
 shutil.make_archive(output_filename, 'zip', wow_addon_pkg)

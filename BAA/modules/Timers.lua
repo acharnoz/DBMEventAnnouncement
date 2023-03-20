@@ -73,7 +73,7 @@ end
 
 function Timer:playDummySound()
     if addon.Config:getDebugModeIsEnabled() then
-        PlaySoundFile("Interface\\AddOns\\DBMEA\\Sounds\\di.ogg", self.audioChannel)
+        PlaySoundFile("Interface\\AddOns\\BAA\\Sounds\\di.ogg", self.audioChannel)
     end
 end
 

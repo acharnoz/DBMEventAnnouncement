@@ -36,10 +36,10 @@ end
 
 -------------------------------------------------------------------------------
 function EventAnnouncementFrame:createIcon(iconSize, borderSpace)
-  self.icon = self.frame:CreateTexture("DBMEA_texture", "ARTWORK")
+  self.icon = self.frame:CreateTexture("BAA_texture", "ARTWORK")
   self.icon:SetSize(iconSize, iconSize)
   self.icon:SetPoint("CENTER")
-  self.icon:SetTexture("Interface\\Addons\\DBMEA\\textures\\icon-DBMEA")
+  self.icon:SetTexture("Interface\\Addons\\BAA\\textures\\icon-BAA")
   self.icon:SetTexCoord(0.1, 0.9, 0.1, 0.9)
   self.icon:SetAlpha(0.75)
 end
@@ -47,16 +47,16 @@ end
 -------------------------------------------------------------------------------
 function EventAnnouncementFrame:updateOnOffButtonTexture()
   if self.onOffButton.isOn then
-    self.onOffButton.texture:SetTexture("Interface\\Addons\\DBMEA\\textures\\icon-on")
+    self.onOffButton.texture:SetTexture("Interface\\Addons\\BAA\\textures\\icon-on")
   else
-    self.onOffButton.texture:SetTexture("Interface\\Addons\\DBMEA\\textures\\icon-off")
+    self.onOffButton.texture:SetTexture("Interface\\Addons\\BAA\\textures\\icon-off")
   end
 end
 
 -------------------------------------------------------------------------------
 function EventAnnouncementFrame:createOnOffButton(buttonSize, borderSpace)
 
-  self.onOffButton = createButton(self.frame, buttonSize, "Interface\\Addons\\DBMEA\\textures\\icon-on")
+  self.onOffButton = createButton(self.frame, buttonSize, "Interface\\Addons\\BAA\\textures\\icon-on")
   self.onOffButton.isOn = true
   self.onOffButton:SetPoint("BOTTOMRIGHT", self.frame, "BOTTOMRIGHT", -2*borderSpace, 2*borderSpace - buttonSize * 1/3)
   self:updateOnOffButtonTexture()
@@ -81,24 +81,24 @@ end
 -------------------------------------------------------------------------------
 function EventAnnouncementFrame:updateHideButtonTexture()
   if addon.Config:getFrameVisibility() ~= addon.Config.VISIBILITY.ALWAYS then
-    self.hideButton.texture:SetTexture("Interface\\Addons\\DBMEA\\textures\\icon-hide-64px")
+    self.hideButton.texture:SetTexture("Interface\\Addons\\BAA\\textures\\icon-hide-64px")
   else
-    self.hideButton.texture:SetTexture("Interface\\Addons\\DBMEA\\textures\\icon-show-64px")
+    self.hideButton.texture:SetTexture("Interface\\Addons\\BAA\\textures\\icon-show-64px")
   end
 end
 
 -------------------------------------------------------------------------------
 function EventAnnouncementFrame:createMenu(buttonSize, buttonBorderSpace, borderSpace)
   
-  self.lockButton = createButton(self.frame, buttonSize, "Interface\\Addons\\DBMEA\\textures\\icon-unlock-32px")
-  self.settingsButton = createButton(self.frame, buttonSize, "Interface\\Addons\\DBMEA\\textures\\icon-settings-32px")
+  self.lockButton = createButton(self.frame, buttonSize, "Interface\\Addons\\BAA\\textures\\icon-unlock-32px")
+  self.settingsButton = createButton(self.frame, buttonSize, "Interface\\Addons\\BAA\\textures\\icon-settings-32px")
   if (addon.Config:getAllVoicesAreEnable()) then
-    self.audioButton = createButton(self.frame, buttonSize, "Interface\\Addons\\DBMEA\\textures\\icon-audio-32px")
+    self.audioButton = createButton(self.frame, buttonSize, "Interface\\Addons\\BAA\\textures\\icon-audio-32px")
   else
-    self.audioButton = createButton(self.frame, buttonSize, "Interface\\Addons\\DBMEA\\textures\\icon-no-audio-32px")
+    self.audioButton = createButton(self.frame, buttonSize, "Interface\\Addons\\BAA\\textures\\icon-no-audio-32px")
   end
   
-  self.hideButton = createButton(self.frame, buttonSize, "Interface\\Addons\\DBMEA\\textures\\icon-close-32px")
+  self.hideButton = createButton(self.frame, buttonSize, "Interface\\Addons\\BAA\\textures\\icon-close-32px")
   self:updateHideButtonTexture()
 
 
@@ -106,9 +106,9 @@ function EventAnnouncementFrame:createMenu(buttonSize, buttonBorderSpace, border
   self.lockButton:SetScript('OnClick', function()
     if (self.lockButton.isUnlock) then
       self.lockButton.isUnlock = false
-      self.lockButton.texture:SetTexture("Interface\\Addons\\DBMEA\\textures\\icon-lock-32px")
+      self.lockButton.texture:SetTexture("Interface\\Addons\\BAA\\textures\\icon-lock-32px")
     else
-      self.lockButton.texture:SetTexture("Interface\\Addons\\DBMEA\\textures\\icon-unlock-32px")
+      self.lockButton.texture:SetTexture("Interface\\Addons\\BAA\\textures\\icon-unlock-32px")
       self.lockButton.isUnlock = true
     end
     self.frame:SetMovable(self.lockButton.isUnlock)
@@ -117,17 +117,17 @@ function EventAnnouncementFrame:createMenu(buttonSize, buttonBorderSpace, border
   
   self.audioButton:SetScript('OnClick', function()
     if (addon.Config:getAllVoicesAreEnable()) then
-      self.audioButton.texture:SetTexture("Interface\\Addons\\DBMEA\\textures\\icon-no-audio-32px")
+      self.audioButton.texture:SetTexture("Interface\\Addons\\BAA\\textures\\icon-no-audio-32px")
       addon.Config:setAllVoicesAreEnable(false)
     else
-      self.audioButton.texture:SetTexture("Interface\\Addons\\DBMEA\\textures\\icon-audio-32px")
+      self.audioButton.texture:SetTexture("Interface\\Addons\\BAA\\textures\\icon-audio-32px")
       addon.Config:setAllVoicesAreEnable(true)
     end
 
   end)
 
   self.settingsButton:SetScript('OnClick', function()
-    InterfaceOptionsFrame_OpenToCategory("DBM Event Announcement")
+    InterfaceOptionsFrame_OpenToCategory("Boss Ability Announcement")
   end)
 
   self.hideButton:SetScript('OnClick', function()
@@ -189,8 +189,8 @@ end
 -------------------------------------------------------------------------------
 function EventAnnouncementFrame:createDebugMenu(buttonSize, buttonBorderSpace, borderSpace)
 
-  self.fileButton = createButton(self.frame, buttonSize, "Interface\\Addons\\DBMEA\\textures\\icon-file-32px")
-  self.testButton = createButton(self.frame, buttonSize, "Interface\\Addons\\DBMEA\\textures\\icon-test-32px")
+  self.fileButton = createButton(self.frame, buttonSize, "Interface\\Addons\\BAA\\textures\\icon-file-32px")
+  self.testButton = createButton(self.frame, buttonSize, "Interface\\Addons\\BAA\\textures\\icon-test-32px")
 
   self.fileButton:SetPoint("TOP", self.hideButton, "BOTTOM", 0, -buttonBorderSpace )
   self.testButton:SetPoint("TOP", self.fileButton, "BOTTOM", 0, -buttonBorderSpace )
@@ -382,7 +382,7 @@ function EventAnnouncementFrame:init()
   self:updateFrameVisibilityConfig()
 
   if addon.Config:getFrameVisibility() == addon.Config.VISIBILITY.ALWAYS then
-    self.icon:SetTexture("Interface\\Addons\\DBMEA\\textures\\icon-DBMEA")
+    self.icon:SetTexture("Interface\\Addons\\BAA\\textures\\icon-BAA")
     self.icon:Show()
   end
 

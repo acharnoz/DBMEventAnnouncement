@@ -1,5 +1,5 @@
-# DBMEventAnnouncement
-This addon is a mod to Deadly Boss Mods (DBM) use to announce X seconds before the end of a timer the incoming spell. Example on Eranog encounter: X sec before the end of the timer, the "Flaming Rift, soon" voice is played in game.
+# Boss Ability Announcement
+This addon is a mod to Deadly Boss Mods (DBM) or BigWigs use to announce X seconds before the end of a timer the incoming spell. Example on Eranog encounter: X sec before the end of the timer, the "Flaming Rift, soon" voice is played in game.
 
 This addon manages for the moment all timers for the Dragonflight raid, the Dragonflight season 1 mythic dungeons and the Dragonflight dungeons. This addon can manage different voicepacks, but for the moment just the FR voicepack is provided.
 
@@ -9,8 +9,11 @@ This addon is created and matained by Milho/Maseo (Dalaran EU Realm). Artificial
 
 # Revision history
 
+## Version 0.3.2
+- Change addon name to Boss Ability Announcement
+
 ## Version 0.3.1
-- Add a spell tooltip (for identified spells) when the cursor enter on the DBMEA frame
+- Add a spell tooltip (for identified spells) when the cursor enter on the BAA frame
 - Add buttons in spell config menu to enable/desable all sounds of the selected instance
 - Add a spell description in the spell config menu
 - Fix Ace3 library version

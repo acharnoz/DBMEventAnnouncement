@@ -1,8 +1,8 @@
 ## Interface: 100005
-## Title:|cffffe00a<|r|cff66c0c0DBMEA|r|cffffe00a>|r |cffffffffCurrent Content (FR)|r
+## Title:|cffffe00a<|r|cff66c0c0BAA|r|cffffe00a>|r |cffffffffCurrent Content (FR)|r
 ## Version: 20230302
-## Notes: This addon includes sounds for: Académie d’Algeth’ar, Creux des Fougerobes, Salles de l’Imprégnation, Neltharus, Bassins de l’Essence rubis, Caveau d’Azur, L’offensive nokhud, Uldaman : l’héritage de Tyr, Îles aux Dragons, Caveau des Incarnations, Salles des Valeureux, Cour des Étoiles, Terres sacrées d’Ombrelune, Temple du Serpent de jade 
+## Notes: This addon includes sounds for: Acadï¿½mie dï¿½Algethï¿½ar, Creux des Fougerobes, Salles de lï¿½Imprï¿½gnation, Neltharus, Bassins de lï¿½Essence rubis, Caveau dï¿½Azur, Lï¿½offensive nokhud, Uldamanï¿½: lï¿½hï¿½ritage de Tyr, ï¿½les aux Dragons, Caveau des Incarnations, Salles des Valeureux, Cour des ï¿½toiles, Terres sacrï¿½es dï¿½Ombrelune, Temple du Serpent de jade 
 ## Author: Milho
-## RequiredDeps: DBMEA
+## RequiredDeps: BAA
 
-DBMEA-CurrentContent-FR.lua
+BAA-CurrentContent-FR.lua

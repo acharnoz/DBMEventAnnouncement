@@ -68,7 +68,7 @@ function Spell:isEquivalent(spellId)
 end
 
 function Spell:print()
-    addon.MsgTools.DebugPrintf("DBMEA Spell: [%s] |T%d:16|t (%d) %s (%d) in %s [%d|%d]", self.voicePackName, self.icon,
+    addon.MsgTools.DebugPrintf("BAA Spell: [%s] |T%d:16|t (%d) %s (%d) in %s [%d|%d]", self.voicePackName, self.icon,
         self.icon, self.name, self.id, self.instanceName, self.instanceId, self.instanceMapId)
 end
 

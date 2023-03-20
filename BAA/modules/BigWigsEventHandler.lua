@@ -1,7 +1,7 @@
 local addonName, addon = ...
 local BigWigsEventHandler = addon:NewModule("BigWigsEventHandler")
 
-local DBMEAS = addon.Structures
+local BAAS = addon.Structures
 
 
 local function bigWigsEventCallback(event, ...)
@@ -22,8 +22,8 @@ local function bigWigsEventCallback(event, ...)
     local expirationTime = now + duration
 
     local newBar
-    DBMEAS.bars[id] = DBMEAS.bars[id] or {}
-    local bar = DBMEAS.bars[id]
+    BAAS.bars[id] = BAAS.bars[id] or {}
+    local bar = BAAS.bars[id]
     bar.id = text
     bar.addonparam = addonparam
     bar.spellId = tostring(spellId)
@@ -55,8 +55,8 @@ local function bigWigsEventCallback(event, ...)
     local addonparam, text = ...
     local id = text
     addon.MsgTools.DebugPrintf("Event %s: id=%s", event, id)
-    if DBMEAS.bars[id] ~= nil then
-      DBMEAS.bars[id] = nil -- remove id from bars
+    if BAAS.bars[id] ~= nil then
+      BAAS.bars[id] = nil -- remove id from bars
     else
       addon.MsgTools.DebugPrintf("Event %s with id=%s not found in table.", event, id)
     end
@@ -67,7 +67,7 @@ local function bigWigsEventCallback(event, ...)
     local id = text
     addon.MsgTools.DebugPrintf("Event %s: id=%s", event, id)
 
-    local bar = DBMEAS.bars[id]
+    local bar = BAAS.bars[id]
     if bar and not bar.paused then
       bar.paused = true
       bar.remaining = bar.expirationTime - GetTime()
@@ -80,7 +80,7 @@ local function bigWigsEventCallback(event, ...)
     local id = text
     addon.MsgTools.DebugPrintf("Event %s: id=%s", event, id)
 
-    local bar = DBMEAS.bars[id]
+    local bar = BAAS.bars[id]
     if bar and bar.paused then
       bar.paused = nil
       bar.expirationTime = GetTime() + (bar.remaining or 0)
@@ -98,7 +98,7 @@ local function bigWigsEventCallback(event, ...)
     if addon.Timer:timerIsStarted() then
       addon.Timer:stopTimer()
     end
-    table.wipe(DBMEAS.bars)
+    table.wipe(BAAS.bars)
 
 
   elseif event == "BigWigs_SetStage" then
@@ -109,7 +109,7 @@ end
 
 --------------------------------------------------------------------------------
 function BigWigsEventHandler:RegisterBigWigsCallback(event)
-  addon.MsgTools.TracePrintf("func DBMEA:RegisterDBMCallback(event)")
+  addon.MsgTools.TracePrintf("func BAA:RegisterDBMCallback(event)")
   addon.MsgTools.DebugPrintf("Register Event: " .. event)
   BigWigsLoader.RegisterMessage(addon, event, bigWigsEventCallback)
 end

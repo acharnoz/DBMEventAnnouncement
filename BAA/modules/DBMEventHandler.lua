@@ -1,7 +1,7 @@
 local addonName, addon = ...
 local DBMEventHandler = addon:NewModule("DBMEventHandler")
 
-local DBMEAS = addon.Structures
+local BAAS = addon.Structures
 
 local function DBMEventCallback(event, ...)
   addon.MsgTools.TracePrintf("DBMEventCallback")
@@ -17,8 +17,8 @@ local function DBMEventCallback(event, ...)
 
     local now = GetTime()
     local expirationTime = now + duration
-    DBMEAS.bars[id] = DBMEAS.bars[id] or {}
-    local bar = DBMEAS.bars[id]
+    BAAS.bars[id] = BAAS.bars[id] or {}
+    local bar = BAAS.bars[id]
     bar.id = id
     bar.message = msg
     bar.expirationTime = expirationTime
@@ -71,7 +71,7 @@ local function DBMEventCallback(event, ...)
     
     local now = GetTime()
     local expirationTime = now + duration - elapsed
-    local bar = DBMEAS.bars[id]
+    local bar = BAAS.bars[id]
     if bar then
       bar.duration = duration
       bar.expirationTime = expirationTime
@@ -88,8 +88,8 @@ local function DBMEventCallback(event, ...)
   elseif event == "DBM_TimerStop" then
     local id = ...
     addon.MsgTools.DebugPrintf("Event %s: id=%s", event, id)
-    if DBMEAS.bars[id] ~= nil then
-      DBMEAS.bars[id] = nil -- remove id from bars
+    if BAAS.bars[id] ~= nil then
+      BAAS.bars[id] = nil -- remove id from bars
     else
       addon.MsgTools.DebugPrintf("Event %s with id=%s not found in table.", event, id)
     end
@@ -99,7 +99,7 @@ local function DBMEventCallback(event, ...)
     local id = ...
     addon.MsgTools.DebugPrintf("Event %s: id=%s", event, id)
     
-    local bar = DBMEAS.bars[id]
+    local bar = BAAS.bars[id]
     if bar and not bar.paused then
       bar.paused = true
       bar.remaining = bar.expirationTime - GetTime()
@@ -109,7 +109,7 @@ local function DBMEventCallback(event, ...)
     local id = ...
     addon.MsgTools.DebugPrintf("Event %s: id=%s", event, id)
     
-    local bar = DBMEAS.bars[id]
+    local bar = BAAS.bars[id]
     if bar then
       bar.paused = nil
       bar.expirationTime = GetTime() + (bar.remaining or 0)
@@ -149,7 +149,7 @@ local function DBMEventCallback(event, ...)
     if addon.Timer:timerIsStarted() then
       addon.Timer:stopTimer()
     end
-    table.wipe(DBMEAS.bars)
+    table.wipe(BAAS.bars)
 
 
   elseif event == "DBM_Kill" then
@@ -158,7 +158,7 @@ local function DBMEventCallback(event, ...)
     if addon.Timer:timerIsStarted() then
       addon.Timer:stopTimer()
     end
-    table.wipe(DBMEAS.bars)
+    table.wipe(BAAS.bars)
 
   else
     addon.MsgTools.WarningPrintf("Event %s not managed.", event)
@@ -167,7 +167,7 @@ local function DBMEventCallback(event, ...)
 end
 
 function DBMEventHandler:RegisterDBMCallback(event)
-  addon.MsgTools.TracePrintf("func DBMEA:RegisterDBMCallback(event)")
+  addon.MsgTools.TracePrintf("func BAA:RegisterDBMCallback(event)")
   --if registeredDBMEvents[event] then
   --  return
   --end
@@ -181,7 +181,7 @@ end
 
 -- -- -- manage events
 function DBMEventHandler:HandleEvents()
-  addon.MsgTools.TracePrintf("DBMEA:HandleEvents()")
+  addon.MsgTools.TracePrintf("BAA:HandleEvents()")
 
   self:RegisterDBMCallback("DBM_TimerStart")
   self:RegisterDBMCallback("DBM_TimerUpdate")

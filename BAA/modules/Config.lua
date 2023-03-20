@@ -26,7 +26,7 @@ function Config:getDefaultConfig()
 end
 
 function Config:init()
-    self.db = LibStub("AceDB-3.0"):New("DBMEADB", self:getDefaultConfig(), true)
+    self.db = LibStub("AceDB-3.0"):New("BAADB", self:getDefaultConfig(), true)
 end
 
 -------------------------------------------------------------------------------
