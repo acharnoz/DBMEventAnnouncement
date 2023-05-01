@@ -27,19 +27,16 @@ def replace_keys(key_to_var, filepath: Path):
     print("Text replaced")
 
 key_to_var = {}
-key_to_var["BAA_VERSION_KEY"] = "0.3.3"
+key_to_var["BAA_VERSION_KEY"] = "0.3.4"
+key_to_var["INTERFACE_VERSION_KEY"] = "100007"
 
 src1=Path("G:\\Dev\\DBMEventAnnouncement\\BAA")
-src2=Path("G:\\Dev\\DBMEventAnnouncement\\BAA-FR-Voicepacks")
-src3=Path("G:\\Dev\\DBMEventAnnouncement\\BAA-EN-Voicepacks")
+src2=Path("G:\\Dev\\DBMEventAnnouncement\\BAA-Voicepacks")
 wow_addon_path=Path("G:\\World of Warcraft\\_retail_\\Interface\\AddOns")
 
+# Merge addon
 addons = [src1]
-
 for child in src2.iterdir():
-    addons.append(child)
-
-for child in src3.iterdir():
     addons.append(child)
 
 for p in addons:
@@ -49,5 +46,6 @@ for p in addons:
         shutil.rmtree(dest)
     shutil.copytree(p, dest)
 
-output_BAA_toc = Path(wow_addon_path / "BAA" / "BAA.toc")
-replace_keys(key_to_var, output_BAA_toc)
+    output_file_toc = Path(wow_addon_path / addon_name / f"{addon_name}.toc")
+    print(output_file_toc)
+    replace_keys(key_to_var, output_file_toc)

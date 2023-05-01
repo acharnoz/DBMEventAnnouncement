@@ -9,6 +9,9 @@ This addon is created and matained by Milho/Maseo (Dalaran EU Realm). Artificial
 
 # Revision history
 
+## Version 0.3.4
+- Generate new voice packs
+
 ## Version 0.3.2
 - Change addon name to Boss Ability Announcement
 
