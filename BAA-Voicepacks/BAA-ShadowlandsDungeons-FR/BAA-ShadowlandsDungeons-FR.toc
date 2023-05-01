@@ -1,0 +1,8 @@
+## Interface: INTERFACE_VERSION_KEY
+## Title:|cffffe00a<|r|cff66c0c0BAA|r|cffffe00a>|r |cffffffffShadowlands Dungeons (FR)|r
+## Version: 20230429
+## Notes: This addon includes sounds for: L’Autre côté, Salles de l’Expiation, Brumes de Tirna Scithe, Malepeste, Profondeurs Sanguines, Flèches de l’Ascension, Tazavesh, le marché dissimulé, Sillage nécrotique, Théâtre de la Souffrance 
+## Author: Milho
+## RequiredDeps: BAA
+
+BAA-ShadowlandsDungeons-FR.lua

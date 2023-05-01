@@ -1,0 +1,8 @@
+## Interface: INTERFACE_VERSION_KEY
+## Title:|cffffe00a<|r|cff66c0c0BAA|r|cffffe00a>|r |cffffffffBattle for Azeroth Dungeons (IT)|r
+## Version: 20230429
+## Notes: This addon includes sounds for: Atal'dazar, Covo della Libertà, Requie dei Re, Operazione: Meccagon, Santuario della Tempesta, Assedio di Boralus, Tempio di Sethraliss, Vena Madre, Grottamarcia, Tol Dagor, Maniero dei Crestabianca 
+## Author: Milho
+## RequiredDeps: BAA
+
+BAA-BattleForAzerothDungeons-IT.lua

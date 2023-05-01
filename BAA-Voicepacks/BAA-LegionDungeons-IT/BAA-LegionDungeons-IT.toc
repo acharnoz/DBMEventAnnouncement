@@ -1,0 +1,8 @@
+## Interface: INTERFACE_VERSION_KEY
+## Title:|cffffe00a<|r|cff66c0c0BAA|r|cffffe00a>|r |cffffffffLegion Dungeons (IT)|r
+## Version: 20230429
+## Notes: This addon includes sounds for: Assalto alla Fortezza Violacea, Forte Corvonero, Cattedrale della Notte Eterna, Corte delle Stelle, Boschetto Cuortetro, Occhio di Azshara, Sale del Valore, Fauci delle Anime, Antro di Neltharion, Ritorno a Karazhan, Seggio del Triumvirato, Arcavia, Segrete delle Custodi 
+## Author: Milho
+## RequiredDeps: BAA
+
+BAA-LegionDungeons-IT.lua

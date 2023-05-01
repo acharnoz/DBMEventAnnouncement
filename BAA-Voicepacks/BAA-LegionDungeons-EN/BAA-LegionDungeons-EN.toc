@@ -1,0 +1,8 @@
+## Interface: INTERFACE_VERSION_KEY
+## Title:|cffffe00a<|r|cff66c0c0BAA|r|cffffe00a>|r |cffffffffLegion Dungeons (EN)|r
+## Version: 20230429
+## Notes: This addon includes sounds for: Assault on Violet Hold, Black Rook Hold, Cathedral of Eternal Night, Court of Stars, Darkheart Thicket, Eye of Azshara, Halls of Valor, Maw of Souls, Neltharion's Lair, Return to Karazhan, Seat of the Triumvirate, The Arcway, Vault of the Wardens 
+## Author: Milho
+## RequiredDeps: BAA
+
+BAA-LegionDungeons-EN.lua

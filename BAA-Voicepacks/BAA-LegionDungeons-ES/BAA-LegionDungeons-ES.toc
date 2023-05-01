@@ -1,0 +1,8 @@
+## Interface: INTERFACE_VERSION_KEY
+## Title:|cffffe00a<|r|cff66c0c0BAA|r|cffffe00a>|r |cffffffffLegion Dungeons (ES)|r
+## Version: 20230429
+## Notes: This addon includes sounds for: Asalto al Bastión Violeta, Torreón Grajo Negro, Catedral de la Noche Eterna, Corte de las Estrellas, Arboleda Corazón Oscuro, Ojo de Azshara, Cámaras del Valor, Fauce de Almas, Guarida de Neltharion, Regreso a Karazhan, Trono del Triunvirato, La Arquería, Cámara de las Celadoras 
+## Author: Milho
+## RequiredDeps: BAA
+
+BAA-LegionDungeons-ES.lua

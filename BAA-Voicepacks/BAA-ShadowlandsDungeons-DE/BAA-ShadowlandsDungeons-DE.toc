@@ -1,0 +1,8 @@
+## Interface: INTERFACE_VERSION_KEY
+## Title:|cffffe00a<|r|cff66c0c0BAA|r|cffffe00a>|r |cffffffffShadowlands Dungeons (DE)|r
+## Version: 20230429
+## Notes: This addon includes sounds for: Die Andre Seite, Hallen der Sühne, Die Nebel von Tirna Scithe, Seuchensturz, Die Blutigen Tiefen, Die Spitzen des Aufstiegs, Tazavesh, der Verhüllte Markt, Die Nekrotische Schneise, Theater der Schmerzen 
+## Author: Milho
+## RequiredDeps: BAA
+
+BAA-ShadowlandsDungeons-DE.lua

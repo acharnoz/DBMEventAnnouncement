@@ -1,0 +1,8 @@
+## Interface: INTERFACE_VERSION_KEY
+## Title:|cffffe00a<|r|cff66c0c0BAA|r|cffffe00a>|r |cffffffffWarlords of Draenor Dungeons (FR)|r
+## Version: 20230429
+## Notes: This addon includes sounds for: Auchindoun, Mine de la Masse-Sanglante, Dépôt de Tristerail, Quais de Fer, Terres sacrées d’Ombrelune, Orée-du-Ciel, Orée-du-Ciel, La Flore éternelle, Sommet du pic Rochenoire 
+## Author: Milho
+## RequiredDeps: BAA
+
+BAA-WarlordsOfDraenorDungeons-FR.lua

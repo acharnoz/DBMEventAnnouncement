@@ -1,0 +1,8 @@
+## Interface: INTERFACE_VERSION_KEY
+## Title:|cffffe00a<|r|cff66c0c0BAA|r|cffffe00a>|r |cffffffffCurrent Content (DE)|r
+## Version: 20230429
+## Notes: This addon includes sounds for: Akademie von Algeth'ar, Brackenfellhöhle, Hallen der Infusion, Neltharus, Rubinlebensbecken, Das Azurblaue Gewölbe, Der Angriff der Nokhud, Uldaman: Vermächtnis von Tyr, Dracheninseln, Gewölbe der Inkarnationen, Die Hallen der Tapferkeit, Der Hof der Sterne, Schattenmondgrabstätte, Tempel der Jadeschlange 
+## Author: Milho
+## RequiredDeps: BAA
+
+BAA-CurrentContent-DE.lua

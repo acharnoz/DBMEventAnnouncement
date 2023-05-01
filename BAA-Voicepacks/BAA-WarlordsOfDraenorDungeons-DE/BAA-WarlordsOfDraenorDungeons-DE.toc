@@ -1,0 +1,8 @@
+## Interface: INTERFACE_VERSION_KEY
+## Title:|cffffe00a<|r|cff66c0c0BAA|r|cffffe00a>|r |cffffffffWarlords of Draenor Dungeons (DE)|r
+## Version: 20230429
+## Notes: This addon includes sounds for: Auchindoun, Blutschlägermine, Grimmgleisdepot, Eisendocks, Schattenmondgrabstätte, Himmelsnadel, Himmelsnadel, Der Immergrüne Flor, Obere Schwarzfelsspitze 
+## Author: Milho
+## RequiredDeps: BAA
+
+BAA-WarlordsOfDraenorDungeons-DE.lua

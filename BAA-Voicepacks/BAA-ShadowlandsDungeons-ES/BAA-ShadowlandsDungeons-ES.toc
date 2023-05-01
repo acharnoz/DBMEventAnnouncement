@@ -1,0 +1,8 @@
+## Interface: INTERFACE_VERSION_KEY
+## Title:|cffffe00a<|r|cff66c0c0BAA|r|cffffe00a>|r |cffffffffShadowlands Dungeons (ES)|r
+## Version: 20230429
+## Notes: This addon includes sounds for: El Otro Lado, Salas de la Expiación, Nieblas de Tirna Scithe, Bajapeste, Cavernas Sanguinas, Agujas de Ascensión, Tazavesh, el Mercado Velado, Estela Necrótica, Teatro del Dolor 
+## Author: Milho
+## RequiredDeps: BAA
+
+BAA-ShadowlandsDungeons-ES.lua

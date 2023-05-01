@@ -1,0 +1,8 @@
+## Interface: INTERFACE_VERSION_KEY
+## Title:|cffffe00a<|r|cff66c0c0BAA|r|cffffe00a>|r |cffffffffBattle for Azeroth Dungeons (FR)|r
+## Version: 20230429
+## Notes: This addon includes sounds for: Atal’Dazar, Port-Liberté, Repos des rois, Opération Mécagone, Sanctuaire des Tempêtes, Siège de Boralus, Temple de Sephraliss, Le Filon, Les tréfonds Putrides, Tol Dagor, Manoir Malvoie 
+## Author: Milho
+## RequiredDeps: BAA
+
+BAA-BattleForAzerothDungeons-FR.lua

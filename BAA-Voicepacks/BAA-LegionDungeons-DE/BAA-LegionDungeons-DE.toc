@@ -1,0 +1,8 @@
+## Interface: INTERFACE_VERSION_KEY
+## Title:|cffffe00a<|r|cff66c0c0BAA|r|cffffe00a>|r |cffffffffLegion Dungeons (DE)|r
+## Version: 20230429
+## Notes: This addon includes sounds for: Sturm auf die Violette Festung, Die Rabenwehr, Die Kathedrale der Ewigen Nacht, Der Hof der Sterne, Das Finsterherzdickicht, Das Auge Azsharas, Die Hallen der Tapferkeit, Der Seelenschlund, Neltharions Hort, Rückkehr nach Karazhan, Sitz des Triumvirats, Der Arkus, Das Verlies der Wächterinnen 
+## Author: Milho
+## RequiredDeps: BAA
+
+BAA-LegionDungeons-DE.lua

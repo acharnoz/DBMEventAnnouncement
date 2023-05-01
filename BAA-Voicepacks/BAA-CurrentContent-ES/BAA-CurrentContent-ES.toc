@@ -1,0 +1,8 @@
+## Interface: INTERFACE_VERSION_KEY
+## Title:|cffffe00a<|r|cff66c0c0BAA|r|cffffe00a>|r |cffffffffCurrent Content (ES)|r
+## Version: 20230429
+## Notes: This addon includes sounds for: Academia Algeth'ar, Hondonada Frondacuero, Salas de Infusión, Neltharus, Estanques de Vida Rubí, Cámara Azur, La Ofensiva Nokhud, Uldaman: Legado de Tyr, Islas Dragón, Cámara de las Encarnaciones, Cámaras del Valor, Corte de las Estrellas, Cementerio de Sombraluna, Templo del Dragón de Jade 
+## Author: Milho
+## RequiredDeps: BAA
+
+BAA-CurrentContent-ES.lua

@@ -1,0 +1,8 @@
+## Interface: INTERFACE_VERSION_KEY
+## Title:|cffffe00a<|r|cff66c0c0BAA|r|cffffe00a>|r |cffffffffBattle for Azeroth Dungeons (ES)|r
+## Version: 20230429
+## Notes: This addon includes sounds for: Atal'Dazar, Fuerte Libre, Reposo de los Reyes, Operación: Mecandria, Altar de la Tormenta, Asedio de Boralus, Templo de Sethraliss, VETA MADRE, Catacumbas Putrefactas, Tol Dagor, Mansión Crestavía 
+## Author: Milho
+## RequiredDeps: BAA
+
+BAA-BattleForAzerothDungeons-ES.lua

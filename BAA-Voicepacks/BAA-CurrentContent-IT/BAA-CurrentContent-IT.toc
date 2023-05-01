@@ -1,0 +1,8 @@
+## Interface: INTERFACE_VERSION_KEY
+## Title:|cffffe00a<|r|cff66c0c0BAA|r|cffffe00a>|r |cffffffffCurrent Content (IT)|r
+## Version: 20230429
+## Notes: This addon includes sounds for: Accademia di Algeth'ar, Conca dei Felcepelle, Sale dell'Infusione, Neltharus, Pozze della Vita di Rubino, Cripta Azzurra, Offensiva dei Nokhud, Uldaman: Eredità di Tyr, Isole dei Draghi, Segrete delle Incarnazioni, Sale del Valore, Corte delle Stelle, Necropoli dei Torvaluna, Tempio della Serpe di Giada 
+## Author: Milho
+## RequiredDeps: BAA
+
+BAA-CurrentContent-IT.lua

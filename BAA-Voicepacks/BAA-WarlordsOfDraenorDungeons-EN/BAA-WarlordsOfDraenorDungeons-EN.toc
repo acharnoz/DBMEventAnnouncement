@@ -1,0 +1,8 @@
+## Interface: INTERFACE_VERSION_KEY
+## Title:|cffffe00a<|r|cff66c0c0BAA|r|cffffe00a>|r |cffffffffWarlords of Draenor Dungeons (EN)|r
+## Version: 20230429
+## Notes: This addon includes sounds for: Auchindoun, Bloodmaul Slag Mines, Grimrail Depot, Iron Docks, Shadowmoon Burial Grounds, Skyreach, Skyreach, The Everbloom, Upper Blackrock Spire 
+## Author: Milho
+## RequiredDeps: BAA
+
+BAA-WarlordsOfDraenorDungeons-EN.lua

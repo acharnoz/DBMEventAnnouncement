@@ -1,0 +1,8 @@
+## Interface: INTERFACE_VERSION_KEY
+## Title:|cffffe00a<|r|cff66c0c0BAA|r|cffffe00a>|r |cffffffffWarlords of Draenor Dungeons (ES)|r
+## Version: 20230429
+## Notes: This addon includes sounds for: Auchindoun, Minas Machacasangre, Terminal Malavía, Puerto de Hierro, Cementerio de Sombraluna, Trecho Celestial, Trecho Celestial, El Vergel Eterno, Cumbre de Roca Negra Superior 
+## Author: Milho
+## RequiredDeps: BAA
+
+BAA-WarlordsOfDraenorDungeons-ES.lua

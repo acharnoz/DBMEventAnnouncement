@@ -1,0 +1,8 @@
+## Interface: INTERFACE_VERSION_KEY
+## Title:|cffffe00a<|r|cff66c0c0BAA|r|cffffe00a>|r |cffffffffShadowlands Dungeons (IT)|r
+## Version: 20230429
+## Notes: This addon includes sounds for: L'Aldilà, Sale della Redenzione, Nebbie di Tirna Falcis, Piagafunesta, Profondità Sanguigne, Guglie dell'Ascensione, Tazavesh, il Bazar Celato, Scia Necrotica, Teatro del Dolore 
+## Author: Milho
+## RequiredDeps: BAA
+
+BAA-ShadowlandsDungeons-IT.lua

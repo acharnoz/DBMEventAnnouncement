@@ -1,0 +1,8 @@
+## Interface: INTERFACE_VERSION_KEY
+## Title:|cffffe00a<|r|cff66c0c0BAA|r|cffffe00a>|r |cffffffffBattle for Azeroth Dungeons (DE)|r
+## Version: 20230429
+## Notes: This addon includes sounds for: Atal'Dazar, Freihafen, Die Königsruh, Operation: Mechagon, Der Schrein des Sturms, Die Belagerung von Boralus, Der Tempel von Sethraliss, Das RIESENFLÖZ!!, Der Tiefenpfuhl, Tol Dagor, Das Kronsteiganwesen 
+## Author: Milho
+## RequiredDeps: BAA
+
+BAA-BattleForAzerothDungeons-DE.lua

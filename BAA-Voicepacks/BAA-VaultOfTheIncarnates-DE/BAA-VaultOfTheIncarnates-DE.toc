@@ -1,0 +1,8 @@
+## Interface: INTERFACE_VERSION_KEY
+## Title:|cffffe00a<|r|cff66c0c0BAA|r|cffffe00a>|r |cffffffffVault of the Incarnates (DE)|r
+## Version: 20230429
+## Notes: This addon includes sounds for: Gewölbe der Inkarnationen 
+## Author: Milho
+## RequiredDeps: BAA
+
+BAA-VaultOfTheIncarnates-DE.lua

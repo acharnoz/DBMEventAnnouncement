@@ -1,0 +1,8 @@
+## Interface: INTERFACE_VERSION_KEY
+## Title:|cffffe00a<|r|cff66c0c0BAA|r|cffffe00a>|r |cffffffffBattle for Azeroth Dungeons (EN)|r
+## Version: 20230429
+## Notes: This addon includes sounds for: Atal'Dazar, Freehold, Kings' Rest, Operation: Mechagon, Shrine of the Storm, Siege of Boralus, Temple of Sethraliss, The MOTHERLODE!!, The Underrot, Tol Dagor, Waycrest Manor 
+## Author: Milho
+## RequiredDeps: BAA
+
+BAA-BattleForAzerothDungeons-EN.lua

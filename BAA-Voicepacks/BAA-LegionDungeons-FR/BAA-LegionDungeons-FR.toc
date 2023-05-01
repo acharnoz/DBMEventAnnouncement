@@ -1,0 +1,8 @@
+## Interface: INTERFACE_VERSION_KEY
+## Title:|cffffe00a<|r|cff66c0c0BAA|r|cffffe00a>|r |cffffffffLegion Dungeons (FR)|r
+## Version: 20230429
+## Notes: This addon includes sounds for: Assaut sur le fort Pourpre, Bastion du Freux, Cathédrale de la Nuit éternelle, Cour des Étoiles, Fourré Sombrecœur, L’Œil d’Azshara, Salles des Valeureux, La Gueule des âmes, Repaire de Neltharion, Retour à Karazhan, Siège du triumvirat, L’Arcavia, Caveau des Gardiennes 
+## Author: Milho
+## RequiredDeps: BAA
+
+BAA-LegionDungeons-FR.lua
